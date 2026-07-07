@@ -82,6 +82,39 @@ def test_non_list_tags_rejected_cleanly(bad):
         Statute.from_dict(_record(tags=bad))
 
 
+def test_empty_id_rejected():
+    with pytest.raises(ValidationError, match="non-empty slug"):
+        Statute.from_dict(_record(id="   "))
+
+
+def test_empty_title_rejected():
+    with pytest.raises(ValidationError, match="title is empty"):
+        Statute.from_dict(_record(title=""))
+
+
+def test_empty_summary_rejected():
+    with pytest.raises(ValidationError, match="summary is empty"):
+        Statute.from_dict(_record(summary="   "))
+
+
+def test_missing_categories_key_rejected():
+    record = _record()
+    del record["categories"]
+    with pytest.raises(ValidationError, match="missing 'categories'"):
+        Statute.from_dict(record)
+
+
+def test_from_dict_rejects_non_mapping():
+    with pytest.raises(ValidationError, match="expected a mapping"):
+        Statute.from_dict(["not", "a", "mapping"])
+
+
+def test_non_string_date_rejected():
+    # A numeric 'effective' is neither a date nor an ISO string.
+    with pytest.raises(ValidationError, match="expected an ISO date string"):
+        Statute.from_dict(_record(effective=2024))
+
+
 def test_roundtrip_to_dict():
     s = Statute.from_dict(_record())
     d = s.to_dict()
