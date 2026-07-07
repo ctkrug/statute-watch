@@ -111,7 +111,7 @@ class Statute:
             raise ValidationError(f"{self.id}: source_url must be an http(s) URL")
 
     @classmethod
-    def from_dict(cls, raw: dict) -> "Statute":
+    def from_dict(cls, raw: dict) -> Statute:
         """Build a :class:`Statute` from a plain dict (e.g. one YAML record)."""
         if not isinstance(raw, dict):
             raise ValidationError(f"expected a mapping, got {type(raw).__name__}")

@@ -85,7 +85,7 @@ def _render_cards(catalog: Catalog) -> str:
 def _render_card(statute) -> str:
     cats = "".join(
         f'<span class="tag tag--{escape(c)}">{escape(label)}</span>'
-        for c, label in zip(statute.categories, category_labels(statute))
+        for c, label in zip(statute.categories, category_labels(statute), strict=True)
     )
     data_categories = " ".join(statute.categories)
     return f"""\
