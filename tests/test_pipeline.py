@@ -87,3 +87,22 @@ def test_merge_folds_changes_and_still_validates(tmp_path, catalog):
 def test_load_staging_missing_file_raises(tmp_path):
     with pytest.raises(PipelineError, match="staging file not found"):
         load_staging(tmp_path / "nope.yaml")
+
+
+def test_fetch_missing_feed_file_raises(tmp_path):
+    with pytest.raises(PipelineError, match="feed file not found"):
+        fetch("congress-ncsl", feed=tmp_path / "absent.yaml", staging_dir=tmp_path)
+
+
+def test_fetch_rejects_non_mapping_feed_entry(tmp_path):
+    bad = tmp_path / "feed.yaml"
+    bad.write_text("- just a bare string\n", encoding="utf-8")
+    with pytest.raises(PipelineError, match="feed entry must be a mapping"):
+        fetch("congress-ncsl", feed=bad, staging_dir=tmp_path)
+
+
+def test_load_staging_non_list_rejected(tmp_path):
+    staging = tmp_path / "staging.yaml"
+    staging.write_text("id: not-a-list\n", encoding="utf-8")
+    with pytest.raises(PipelineError, match="must be a YAML list"):
+        load_staging(staging)
