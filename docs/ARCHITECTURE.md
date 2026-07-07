@@ -58,8 +58,10 @@ network in tests):
 - **`diff(catalog, staged)`** classifies each staged record against the current dataset as
   `new`, a `stage-advance`, or `unchanged`, so a human can review before merging.
 - **`apply_merge(catalog, staged)`** folds approved records back in (append new, update
-  advanced) and returns record dicts; the `merge --write` CLI writes them and re-validates,
-  so a merge can never ship a broken dataset.
+  advanced) and returns record dicts; the `merge --write` CLI validates the merged result
+  in full — structure **and** the provenance gate — *before* writing, and refuses (exit 1,
+  no file written) if it would leave a dataset `validate` rejects, so a merge can never ship
+  a broken dataset.
 
 ## Invariants worth protecting
 
