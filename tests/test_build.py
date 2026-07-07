@@ -3,6 +3,7 @@
 import json
 
 from statute_watch.build import build_site, state_coverage
+from statute_watch.catalog import Catalog
 
 
 def test_build_emits_self_contained_site(tmp_path, catalog):
@@ -61,6 +62,18 @@ def test_build_renders_coverage_strip(tmp_path, catalog):
     # One coverage row per state, and the placeholder was consumed.
     assert html.count('class="coverage__row"') == len(catalog.states())
     assert "{{COVERAGE}}" not in html
+
+
+def test_build_empty_catalog_produces_valid_page(tmp_path):
+    # An empty dataset must still render a self-contained page (no cards, no
+    # coverage rows, zero counts) rather than crash — the designed empty state.
+    out = build_site(tmp_path / "site", catalog=Catalog(statutes=()))
+    html = (out / "index.html").read_text(encoding="utf-8")
+    assert "{{" not in html  # every placeholder was still filled
+    assert 'class="card"' not in html
+    assert 'class="coverage__row"' not in html
+    data = json.loads((out / "data.json").read_text(encoding="utf-8"))
+    assert data["statutes"] == []
 
 
 def test_build_is_reproducible(tmp_path, catalog):
