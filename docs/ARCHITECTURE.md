@@ -19,8 +19,8 @@ src/statute_watch/
   sources.py          # loads/validates the source registry; provenance cross-check
   summarize.py        # derives display strings (stage label, status line, category labels)
   build.py            # renders the dataset into dist/ (index.html + assets + data.json)
-  pipeline.py         # refresh pipeline: fetch candidates -> staging, diff staging vs dataset
-  cli.py              # argparse entrypoint: validate | build | list | sources | fetch | diff
+  pipeline.py         # refresh pipeline: fetch -> staging, diff vs dataset, merge back in
+  cli.py              # argparse: validate | build | list | sources | fetch | diff | merge
   __main__.py         # `python -m statute_watch`
 templates/
   index.html          # page shell with {{PLACEHOLDER}} tokens the builder fills
@@ -57,6 +57,9 @@ network in tests):
   `data/staging/<source>.yaml` — it never touches the curated dataset.
 - **`diff(catalog, staged)`** classifies each staged record against the current dataset as
   `new`, a `stage-advance`, or `unchanged`, so a human can review before merging.
+- **`apply_merge(catalog, staged)`** folds approved records back in (append new, update
+  advanced) and returns record dicts; the `merge --write` CLI writes them and re-validates,
+  so a merge can never ship a broken dataset.
 
 ## Invariants worth protecting
 
