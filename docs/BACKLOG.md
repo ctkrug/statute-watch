@@ -106,9 +106,11 @@ Keep the dataset current without hand-editing YAML forever.
   - _Done: `statute-watch diff` classifies new/advanced/unchanged; `pipeline.apply_merge`
     yields a dataset that still validates (`test_pipeline`)._
 
-- [ ] **3.3 Scheduled build.**
+- [x] **3.3 Scheduled build.**
   - AC1: A documented command/GitHub Action rebuilds the site from the dataset on a schedule
     and the output is reproducible (same dataset → same site).
+  - _Done: `.github/workflows/build-site.yml` (weekly cron + dispatch + data-change trigger);
+    `test_build.test_build_is_reproducible` guards byte-identical output._
 
 ---
 
