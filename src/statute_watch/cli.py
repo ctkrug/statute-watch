@@ -7,6 +7,7 @@ Subcommands:
     sources    List the registered legislative sources.
     fetch      Stage candidate bills from a source feed (never touches curated data).
     diff       Report how a staging file differs from the current dataset.
+    merge      Fold staged new/advanced records into the dataset (preview by default).
 """
 
 from __future__ import annotations

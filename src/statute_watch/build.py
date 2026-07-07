@@ -5,10 +5,11 @@ the dataset as embedded JSON plus server-rendered statute cards, and write the
 result to an output directory (``dist/`` by default). Everything uses **relative
 asset paths** so the site works when hosted under any base path.
 
-This SCOPE-phase builder produces a correct, runnable page; the filtering UI,
-the state-map hero, and the design polish are BUILD-phase stories (see
-``docs/BACKLOG.md``). The contract here — a single output directory with an
-``index.html`` and relative assets — is what the later work builds on.
+Every statute is server-rendered as a card and the whole dataset is embedded as
+JSON, so the page is useful with JavaScript disabled and ``app.js`` only layers
+the filter controls on top (progressive enhancement). The hero also gets a
+server-rendered state-coverage strip. The contract — one output directory with
+an ``index.html`` and relative assets — is stable for any host.
 """
 
 from __future__ import annotations
