@@ -79,7 +79,10 @@ def load_catalog(path: str | Path | None = None) -> Catalog:
     if not data_path.exists():
         raise FileNotFoundError(f"dataset not found: {data_path}")
 
-    raw = yaml.safe_load(data_path.read_text(encoding="utf-8")) or []
+    try:
+        raw = yaml.safe_load(data_path.read_text(encoding="utf-8")) or []
+    except (yaml.YAMLError, UnicodeDecodeError) as exc:
+        raise ValidationError(f"dataset could not be read as YAML: {exc}") from exc
     if not isinstance(raw, list):
         raise ValidationError("dataset must be a YAML list of statute records")
 

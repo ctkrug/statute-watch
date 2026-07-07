@@ -110,7 +110,10 @@ def load_sources(path: str | Path | None = None) -> SourceRegistry:
     if not src_path.exists():
         raise FileNotFoundError(f"sources registry not found: {src_path}")
 
-    raw = yaml.safe_load(src_path.read_text(encoding="utf-8")) or []
+    try:
+        raw = yaml.safe_load(src_path.read_text(encoding="utf-8")) or []
+    except (yaml.YAMLError, UnicodeDecodeError) as exc:
+        raise ValidationError(f"sources registry could not be read as YAML: {exc}") from exc
     if not isinstance(raw, list):
         raise ValidationError("sources registry must be a YAML list")
 

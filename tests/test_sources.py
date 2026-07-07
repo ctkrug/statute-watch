@@ -104,6 +104,13 @@ def test_non_list_registry_rejected(tmp_path):
         load_sources(registry)
 
 
+def test_malformed_yaml_registry_raises_validation_error(tmp_path):
+    registry = tmp_path / "sources.yaml"
+    registry.write_text("- id: [unterminated\n", encoding="utf-8")
+    with pytest.raises(ValidationError, match="could not be read as YAML"):
+        load_sources(registry)
+
+
 def test_empty_id_rejected():
     with pytest.raises(ValidationError, match="id must be a non-empty slug"):
         Source.from_dict({"name": "X", "url": "https://x.gov", "kind": "index"})

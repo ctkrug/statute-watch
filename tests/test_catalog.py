@@ -97,6 +97,23 @@ def test_non_list_dataset_rejected(tmp_path):
         load_catalog(dataset)
 
 
+def test_malformed_yaml_dataset_raises_validation_error(tmp_path):
+    # A syntactically broken file must surface a clean ValidationError, not an
+    # uncaught yaml.YAMLError that escapes the CLI handler as a traceback.
+    dataset = tmp_path / "broken.yaml"
+    dataset.write_text("- id: [unterminated\n", encoding="utf-8")
+    with pytest.raises(ValidationError, match="could not be read as YAML"):
+        load_catalog(dataset)
+
+
+def test_binary_dataset_raises_validation_error(tmp_path):
+    # Non-UTF-8 bytes must fail cleanly, not raise a raw UnicodeDecodeError.
+    dataset = tmp_path / "binary.yaml"
+    dataset.write_bytes(b"\xa7\xff\x00\xfe garbage")
+    with pytest.raises(ValidationError, match="could not be read as YAML"):
+        load_catalog(dataset)
+
+
 def test_empty_dataset_loads_as_empty_catalog(tmp_path):
     dataset = tmp_path / "empty.yaml"
     dataset.write_text("", encoding="utf-8")

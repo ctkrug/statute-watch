@@ -50,7 +50,10 @@ def _find_source(registry: SourceRegistry, source_id: str) -> Source:
 def _read_feed(feed_path: Path) -> list[dict]:
     if not feed_path.exists():
         raise PipelineError(f"feed file not found: {feed_path}")
-    raw = yaml.safe_load(feed_path.read_text(encoding="utf-8")) or []
+    try:
+        raw = yaml.safe_load(feed_path.read_text(encoding="utf-8")) or []
+    except (yaml.YAMLError, UnicodeDecodeError) as exc:
+        raise PipelineError(f"feed could not be read as YAML: {exc}") from exc
     if not isinstance(raw, list):
         raise PipelineError("feed must be a YAML list of raw bill records")
     return raw
@@ -138,7 +141,10 @@ def load_staging(path: str | Path) -> list[Statute]:
     staging = Path(path)
     if not staging.exists():
         raise PipelineError(f"staging file not found: {staging}")
-    raw = yaml.safe_load(staging.read_text(encoding="utf-8")) or []
+    try:
+        raw = yaml.safe_load(staging.read_text(encoding="utf-8")) or []
+    except (yaml.YAMLError, UnicodeDecodeError) as exc:
+        raise PipelineError(f"staging file could not be read as YAML: {exc}") from exc
     if not isinstance(raw, list):
         raise PipelineError("staging file must be a YAML list")
     return [Statute.from_dict(entry) for entry in raw]

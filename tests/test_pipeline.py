@@ -106,3 +106,17 @@ def test_load_staging_non_list_rejected(tmp_path):
     staging.write_text("id: not-a-list\n", encoding="utf-8")
     with pytest.raises(PipelineError, match="must be a YAML list"):
         load_staging(staging)
+
+
+def test_load_staging_malformed_yaml_raises(tmp_path):
+    staging = tmp_path / "staging.yaml"
+    staging.write_text("- id: [unterminated\n", encoding="utf-8")
+    with pytest.raises(PipelineError, match="could not be read as YAML"):
+        load_staging(staging)
+
+
+def test_fetch_malformed_yaml_feed_raises(tmp_path):
+    bad = tmp_path / "feed.yaml"
+    bad.write_text("- id: [unterminated\n", encoding="utf-8")
+    with pytest.raises(PipelineError, match="could not be read as YAML"):
+        fetch("congress-ncsl", feed=bad, staging_dir=tmp_path)
