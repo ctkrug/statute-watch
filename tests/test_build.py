@@ -61,3 +61,11 @@ def test_build_renders_coverage_strip(tmp_path, catalog):
     # One coverage row per state, and the placeholder was consumed.
     assert html.count('class="coverage__row"') == len(catalog.states())
     assert "{{COVERAGE}}" not in html
+
+
+def test_build_is_reproducible(tmp_path, catalog):
+    # Same dataset -> byte-identical site (backlog 3.3: reproducible builds).
+    a = build_site(tmp_path / "a", catalog=catalog)
+    b = build_site(tmp_path / "b", catalog=catalog)
+    for name in ("index.html", "data.json", "styles.css", "app.js"):
+        assert (a / name).read_bytes() == (b / name).read_bytes()
