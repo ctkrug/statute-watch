@@ -1,0 +1,46 @@
+name: Build site
+
+# Rebuilds the static site from the dataset on a schedule (and on demand), so a
+# curated data change is reflected without a manual build. The build is
+# reproducible: the same dataset always renders to the same output.
+
+on:
+  schedule:
+    - cron: "17 6 * * 1" # every Monday 06:17 UTC
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - "data/**"
+      - "templates/**"
+      - "src/**"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        run: pip install -e .
+
+      - name: Validate dataset and provenance
+        run: python -m statute_watch validate
+
+      - name: Build site
+        run: python -m statute_watch build
+
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: statute-watch-site
+          path: dist/
+          if-no-files-found: error
