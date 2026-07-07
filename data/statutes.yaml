@@ -1,0 +1,204 @@
+# Statute Watch — curated dataset of US state privacy-law changes.
+#
+# Each record is one bill in one state. Fields:
+#   id           stable slug, unique (state-billtype-number)
+#   state        two-letter USPS code
+#   title        human-readable bill title
+#   bill_number  legislative identifier
+#   categories   one or more of: geolocation, biometric, data-broker,
+#                comprehensive, health-data, childrens
+#   stage        introduced | passed | enacted | effective
+#   summary      plain-English "what changed" (1-3 sentences)
+#   source_url   canonical link to the bill or a legislative record
+#   introduced / last_action / effective  ISO dates (optional)
+#   tags         free-form keywords
+#
+# This is a hand-curated seed. The pipeline (later epic) will append and refresh
+# records from legislative sources listed in sources.yaml.
+
+- id: il-bipa-740-14
+  state: IL
+  title: Biometric Information Privacy Act
+  bill_number: 740 ILCS 14
+  categories: [biometric]
+  stage: effective
+  summary: >-
+    Requires private entities to obtain written consent before collecting
+    fingerprints, faceprints, or other biometric identifiers, and creates a
+    private right of action for violations — the strictest biometric regime in
+    the country.
+  source_url: https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=3004
+  introduced: 2008-02-14
+  last_action: 2008-10-03
+  effective: 2008-10-03
+  tags: [private-right-of-action, consent]
+
+- id: tx-hb-4-2023
+  state: TX
+  title: Texas Data Privacy and Security Act
+  bill_number: HB 4
+  categories: [comprehensive, data-broker]
+  stage: effective
+  summary: >-
+    Gives Texans rights to access, correct, and delete personal data and to opt
+    out of targeted advertising and sale; applies to most businesses regardless
+    of revenue, unlike the revenue thresholds in other states.
+  source_url: https://capitol.texas.gov/BillLookup/History.aspx?LegSess=88R&Bill=HB4
+  introduced: 2023-03-02
+  last_action: 2024-07-01
+  effective: 2024-07-01
+  tags: [opt-out, targeted-advertising]
+
+- id: ca-sb-362-2023
+  state: CA
+  title: Delete Act
+  bill_number: SB 362
+  categories: [data-broker]
+  stage: enacted
+  summary: >-
+    Directs the California Privacy Protection Agency to build a single deletion
+    mechanism that lets residents delete their data from every registered data
+    broker with one request, and tightens broker-registration requirements.
+  source_url: https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240SB362
+  introduced: 2023-02-08
+  last_action: 2023-10-10
+  effective: 2026-01-01
+  tags: [deletion, broker-registry]
+
+- id: wa-hb-1155-2023
+  state: WA
+  title: My Health My Data Act
+  bill_number: HB 1155
+  categories: [health-data, geolocation]
+  stage: effective
+  summary: >-
+    Protects consumer health data — including location data that could reveal a
+    visit to a health facility — with consent requirements, a geofencing ban
+    around health-care sites, and a private right of action.
+  source_url: https://app.leg.wa.gov/billsummary?BillNumber=1155&Year=2023
+  introduced: 2023-01-18
+  last_action: 2024-03-31
+  effective: 2024-03-31
+  tags: [geofencing, reproductive-health, private-right-of-action]
+
+- id: or-sb-619-2023
+  state: OR
+  title: Oregon Consumer Privacy Act
+  bill_number: SB 619
+  categories: [comprehensive, biometric]
+  stage: effective
+  summary: >-
+    Establishes consumer data rights and, unusually, names specific biometric
+    and precise-geolocation data as sensitive categories requiring opt-in
+    consent before processing.
+  source_url: https://olis.oregonlegislature.gov/liz/2023R1/Measures/Overview/SB619
+  introduced: 2023-01-09
+  last_action: 2024-07-01
+  effective: 2024-07-01
+  tags: [sensitive-data, opt-in]
+
+- id: ny-s-1042-2025
+  state: NY
+  title: New York Data Broker Registration Act
+  bill_number: S 1042
+  categories: [data-broker]
+  stage: passed
+  summary: >-
+    Would require data brokers operating in New York to register annually,
+    disclose the categories of data they hold, and pay a fee funding state
+    enforcement.
+  source_url: https://www.nysenate.gov/legislation/bills/2025/S1042
+  introduced: 2025-01-08
+  last_action: 2025-06-12
+  tags: [registration, enforcement-fund]
+
+- id: co-sb-190-2024
+  state: CO
+  title: Colorado Privacy Act — Biometric Amendment
+  bill_number: HB 24-1130
+  categories: [biometric]
+  stage: enacted
+  summary: >-
+    Amends the Colorado Privacy Act to add explicit protections for biometric
+    identifiers, requiring a written policy, consent before collection, and
+    retention limits tied to the purpose of collection.
+  source_url: https://leg.colorado.gov/bills/hb24-1130
+  introduced: 2024-02-12
+  last_action: 2024-05-31
+  effective: 2025-07-01
+  tags: [retention-limits, consent]
+
+- id: fl-sb-262-2023
+  state: FL
+  title: Florida Digital Bill of Rights
+  bill_number: SB 262
+  categories: [comprehensive, childrens, geolocation]
+  stage: effective
+  summary: >-
+    Applies broad consumer-privacy duties to very large technology firms and
+    restricts collection of precise geolocation and children's data, with the
+    state attorney general as sole enforcer.
+  source_url: https://www.flsenate.gov/Session/Bill/2023/262
+  introduced: 2023-02-27
+  last_action: 2024-07-01
+  effective: 2024-07-01
+  tags: [big-tech, ag-enforcement]
+
+- id: ct-sb-3-2023
+  state: CT
+  title: Act Concerning Online Privacy, Data and Safety Protections
+  bill_number: SB 3
+  categories: [childrens, health-data]
+  stage: effective
+  summary: >-
+    Extends Connecticut's privacy law with heightened duties for minors' data
+    and new protections for consumer health and reproductive-health information.
+  source_url: https://www.cga.ct.gov/asp/cgabillstatus/cgabillstatus.asp?selBillType=Bill&bill_num=SB00003
+  introduced: 2023-01-25
+  last_action: 2023-10-01
+  effective: 2023-10-01
+  tags: [minors, reproductive-health]
+
+- id: va-hb-707-2025
+  state: VA
+  title: Reproductive and Sexual Health Location Privacy
+  bill_number: HB 707
+  categories: [geolocation, health-data]
+  stage: passed
+  summary: >-
+    Would prohibit obtaining, retaining, or selling location data that identifies
+    a person's presence at a reproductive- or sexual-health facility without
+    express consent.
+  source_url: https://lis.virginia.gov/cgi-bin/legp604.exe?251+sum+HB707
+  introduced: 2025-01-06
+  last_action: 2025-02-04
+  tags: [location-data, reproductive-health]
+
+- id: mt-sb-384-2025
+  state: MT
+  title: Montana Consumer Data Privacy Act Amendments
+  bill_number: SB 384
+  categories: [comprehensive, childrens]
+  stage: enacted
+  summary: >-
+    Lowers the applicability thresholds of Montana's privacy law and adds opt-in
+    consent requirements for processing the personal data of known minors.
+  source_url: https://bills.legmt.gov/#/laws/bill/2/LC2131
+  introduced: 2025-02-14
+  last_action: 2025-05-08
+  effective: 2025-10-01
+  tags: [thresholds, minors]
+
+- id: ma-hd-3263-2025
+  state: MA
+  title: Location Shield Act
+  bill_number: HD 3263
+  categories: [geolocation, data-broker]
+  stage: introduced
+  summary: >-
+    Would ban the sale of location data of Massachusetts residents and require a
+    warrant for law enforcement to buy location data from brokers.
+  source_url: https://malegislature.gov/Bills/194/HD3263
+  introduced: 2025-01-17
+  last_action: 2025-01-17
+  tags: [sale-ban, warrant]
