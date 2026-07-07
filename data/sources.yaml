@@ -3,6 +3,22 @@
 # For v1 the dataset is hand-curated from these official records; a later epic
 # adds a scraper that ingests and refreshes entries against them. Each source is
 # an authoritative, public legislative site — no scraping of paywalled trackers.
+#
+# Fields:
+#   id            stable slug
+#   name          human-readable source name
+#   jurisdiction  two-letter state code for an official source, or a description
+#                 for a cross-state index
+#   state         two-letter code an *official* source is the record-of for
+#                 (omitted for indexes)
+#   url           the source's public entry point
+#   kind          official (the legislature's own record) | index (a curated tracker)
+#   notes         what the source is used for
+#
+# Provenance rule (enforced by `statute-watch validate`): every state that
+# appears in the dataset must have at least one `official` source registered here.
+
+# --- Cross-state discovery indexes -------------------------------------------
 
 - id: congress-ncsl
   name: National Conference of State Legislatures — Privacy Legislation Tracker
@@ -18,9 +34,12 @@
   kind: index
   notes: Reference index for comprehensive consumer-privacy bills.
 
+# --- Official state legislative records (record-of-truth per jurisdiction) ----
+
 - id: ca-leginfo
   name: California Legislative Information
   jurisdiction: CA
+  state: CA
   url: https://leginfo.legislature.ca.gov/
   kind: official
   notes: Bill text and status of record for California.
@@ -28,13 +47,151 @@
 - id: tx-capitol
   name: Texas Legislature Online
   jurisdiction: TX
+  state: TX
   url: https://capitol.texas.gov/
   kind: official
-  notes: Bill lookup and history for Texas.
+  notes: Bill lookup, history, and codified statutes for Texas.
 
 - id: wa-leg
   name: Washington State Legislature
   jurisdiction: WA
+  state: WA
   url: https://app.leg.wa.gov/
   kind: official
   notes: Bill summaries and status for Washington.
+
+- id: il-ilga
+  name: Illinois General Assembly
+  jurisdiction: IL
+  state: IL
+  url: https://www.ilga.gov/
+  kind: official
+  notes: Compiled statutes and bill status for Illinois.
+
+- id: or-olis
+  name: Oregon Legislative Information System (OLIS)
+  jurisdiction: OR
+  state: OR
+  url: https://olis.oregonlegislature.gov/
+  kind: official
+  notes: Measure overview and history for Oregon.
+
+- id: ny-senate
+  name: New York State Senate / NYSenate.gov
+  jurisdiction: NY
+  state: NY
+  url: https://www.nysenate.gov/legislation
+  kind: official
+  notes: Bill text and status for New York.
+
+- id: co-leg
+  name: Colorado General Assembly
+  jurisdiction: CO
+  state: CO
+  url: https://leg.colorado.gov/
+  kind: official
+  notes: Bill records for Colorado.
+
+- id: fl-senate
+  name: Florida Senate
+  jurisdiction: FL
+  state: FL
+  url: https://www.flsenate.gov/
+  kind: official
+  notes: Session bill records for Florida.
+
+- id: ct-cga
+  name: Connecticut General Assembly
+  jurisdiction: CT
+  state: CT
+  url: https://www.cga.ct.gov/
+  kind: official
+  notes: Bill status and text for Connecticut.
+
+- id: va-lis
+  name: Virginia Legislative Information System (LIS)
+  jurisdiction: VA
+  state: VA
+  url: https://lis.virginia.gov/
+  kind: official
+  notes: Bill summaries and history for Virginia.
+
+- id: mt-leg
+  name: Montana Legislature
+  jurisdiction: MT
+  state: MT
+  url: https://bills.legmt.gov/
+  kind: official
+  notes: Bill records for Montana.
+
+- id: ma-malegislature
+  name: Massachusetts General Court
+  jurisdiction: MA
+  state: MA
+  url: https://malegislature.gov/
+  kind: official
+  notes: Bill text and status for Massachusetts.
+
+- id: ut-le
+  name: Utah State Legislature
+  jurisdiction: UT
+  state: UT
+  url: https://le.utah.gov/
+  kind: official
+  notes: Bill text and status for Utah.
+
+- id: tn-capitol
+  name: Tennessee General Assembly
+  jurisdiction: TN
+  state: TN
+  url: https://wapp.capitol.tn.gov/apps/BillInfo/
+  kind: official
+  notes: Bill information for Tennessee.
+
+- id: de-legis
+  name: Delaware General Assembly
+  jurisdiction: DE
+  state: DE
+  url: https://legis.delaware.gov/
+  kind: official
+  notes: Legislation detail records for Delaware.
+
+- id: nj-legislature
+  name: New Jersey Legislature
+  jurisdiction: NJ
+  state: NJ
+  url: https://www.njleg.state.nj.us/
+  kind: official
+  notes: Bill search and status for New Jersey.
+
+- id: md-mgaleg
+  name: Maryland General Assembly
+  jurisdiction: MD
+  state: MD
+  url: https://mgaleg.maryland.gov/
+  kind: official
+  notes: Legislation details for Maryland.
+
+- id: mn-revisor
+  name: Minnesota Legislature — Office of the Revisor of Statutes
+  jurisdiction: MN
+  state: MN
+  url: https://www.revisor.mn.gov/
+  kind: official
+  notes: Bill text and statutes for Minnesota.
+
+- id: in-iga
+  name: Indiana General Assembly
+  jurisdiction: IN
+  state: IN
+  url: https://iga.in.gov/
+  kind: official
+  notes: Bill records for Indiana.
+
+- id: ky-legislature
+  name: Kentucky General Assembly
+  jurisdiction: KY
+  state: KY
+  url: https://apps.legislature.ky.gov/
+  kind: official
+  notes: Bill records for Kentucky.
