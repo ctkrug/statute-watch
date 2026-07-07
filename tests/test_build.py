@@ -2,7 +2,7 @@
 
 import json
 
-from statute_watch.build import build_site
+from statute_watch.build import build_site, state_coverage
 
 
 def test_build_emits_self_contained_site(tmp_path, catalog):
@@ -43,3 +43,21 @@ def test_summary_text_is_escaped_and_present(tmp_path, catalog):
     html = (out / "index.html").read_text(encoding="utf-8")
     # A known statute's title should appear in the rendered cards.
     assert "Biometric Information Privacy Act" in html
+
+
+def test_state_coverage_is_ranked_and_complete(catalog):
+    coverage = state_coverage(catalog)
+    # One entry per distinct state, and every state accounted for.
+    assert len(coverage) == len(catalog.states())
+    assert sum(count for _, count in coverage) == len(catalog)
+    # Ranked by count, descending.
+    counts = [count for _, count in coverage]
+    assert counts == sorted(counts, reverse=True)
+
+
+def test_build_renders_coverage_strip(tmp_path, catalog):
+    out = build_site(tmp_path / "site", catalog=catalog)
+    html = (out / "index.html").read_text(encoding="utf-8")
+    # One coverage row per state, and the placeholder was consumed.
+    assert html.count('class="coverage__row"') == len(catalog.states())
+    assert "{{COVERAGE}}" not in html
