@@ -65,6 +65,7 @@ def _render(template: str, catalog: Catalog) -> str:
     dataset_json = json.dumps({"statutes": [s.to_dict() for s in catalog]})
     replacements = {
         "{{CARDS}}": _render_cards(catalog),
+        "{{COVERAGE}}": _render_coverage(catalog),
         "{{COUNT}}": str(len(catalog)),
         "{{STATE_COUNT}}": str(len(catalog.states())),
         "{{DATASET_JSON}}": dataset_json,
@@ -74,6 +75,39 @@ def _render(template: str, catalog: Catalog) -> str:
     for key, value in replacements.items():
         template = template.replace(key, value)
     return template
+
+
+def state_coverage(catalog: Catalog) -> list[tuple[str, int]]:
+    """(state, statute-count) pairs, ranked by count then state code.
+
+    The ranked strip in the hero uses this to show the dataset's breadth at a
+    glance (backlog 2.5).
+    """
+    counts: dict[str, int] = {}
+    for statute in catalog:
+        counts[statute.state] = counts.get(statute.state, 0) + 1
+    return sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))
+
+
+def _render_coverage(catalog: Catalog) -> str:
+    """Server-render the ranked state-coverage strip (one themed bar per state)."""
+    coverage = state_coverage(catalog)
+    if not coverage:
+        return ""
+    top = coverage[0][1]
+    rows = []
+    for state, count in coverage:
+        pct = round(100 * count / top)
+        noun = "statute" if count == 1 else "statutes"
+        rows.append(
+            f'        <li class="coverage__row" data-state="{escape(state)}">'
+            f'<span class="coverage__state">{escape(state)}</span>'
+            f'<span class="coverage__bar"><span class="coverage__fill" '
+            f'style="width:{pct}%"></span></span>'
+            f'<span class="coverage__count" aria-label="{count} {noun}">{count}</span>'
+            f"</li>"
+        )
+    return "\n".join(rows)
 
 
 def _render_cards(catalog: Catalog) -> str:
