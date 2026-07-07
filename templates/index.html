@@ -3,8 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Statute Watch — US state privacy law, tracked</title>
-  <meta name="description" content="A tracker of US state privacy-law changes — geolocation, biometric, and data-broker rules — filterable by state and data type, each with a plain-English summary." />
+  <title>Statute Watch: state privacy law, tracked as it moves</title>
+  <meta name="description" content="Track US state privacy laws across geolocation, biometric, and data-broker rules. Filter by state and data type; every entry says in plain English what changed." />
+  <meta property="og:title" content="Statute Watch" />
+  <meta property="og:description" content="State privacy law, tracked as it moves. Geolocation, biometric, and data-broker rules across the states, filterable, each with a plain-English summary of what changed." />
+  <meta property="og:type" content="website" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231b2a4a'/%3E%3Cpath d='M16 5l9 4v6c0 5-4 9-9 12-5-3-9-7-9-12V9z' fill='none' stroke='%23e2483d' stroke-width='2.4'/%3E%3Cpath d='M11 16l3.5 3.5L22 12' fill='none' stroke='%23f4f1ea' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -15,7 +18,13 @@
         <span class="wordmark__glyph" aria-hidden="true">§</span>
         <span class="wordmark__name">Statute<span class="wordmark__accent">Watch</span></span>
       </a>
-      <p class="masthead__tag">US state privacy law, tracked &amp; explained</p>
+      <div class="masthead__actions">
+        <p class="masthead__tag">US state privacy law, tracked &amp; explained</p>
+        <a class="ghlink" href="https://github.com/ctkrug/statute-watch" rel="noopener" target="_blank" aria-label="View Statute Watch on GitHub">
+          <svg class="ghlink__mark" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.76-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          <span>View on GitHub</span>
+        </a>
+      </div>
     </div>
   </header>
 
@@ -25,8 +34,8 @@
         <h1 class="hero__headline">Fifty legislatures. One dossier.</h1>
         <p class="hero__lede">
           Geolocation, biometric, and data-broker rules as they move through the
-          statehouses — filterable by state and data type, each with a plain-English
-          &ldquo;what changed.&rdquo;
+          statehouses. Filter by state and data type; every entry carries a
+          plain-English &ldquo;what changed.&rdquo;
         </p>
         <dl class="hero__stats">
           <div class="stat"><dt>Statutes tracked</dt><dd>{{COUNT}}</dd></div>
@@ -71,10 +80,82 @@
     <p class="empty" id="empty" hidden>No statutes match those filters yet.</p>
   </main>
 
+  <section class="seo" aria-labelledby="about-heading">
+    <div class="wrap seo__inner">
+      <article class="seo__col">
+        <h2 id="about-heading" class="seo__title">What Statute Watch is for</h2>
+        <p>
+          US state privacy law is a moving target. Every session, states introduce,
+          amend, pass, and bring into force bills touching location tracking, biometric
+          identifiers, data-broker registration, and comprehensive consumer-privacy
+          rights. The signal that matters to a privacy or compliance team, which state
+          just changed which obligation, is scattered across fifty legislatures and
+          buried in statutory language few people have time to read.
+        </p>
+        <p>
+          Statute Watch collects those changes into one browsable dossier. Each entry
+          records the state, the bill number, the data types it governs, where it sits
+          in its lifecycle (introduced, passed, enacted, or in effect), and a short
+          plain-English note on what the law actually requires. You filter by state and
+          data type to see exactly the slice you own, instead of keeping fifty bill
+          trackers open in browser tabs.
+        </p>
+        <h3 class="seo__sub">How to use it</h3>
+        <p>
+          Pick a state to see everything tracked there, or a data type (say biometric or
+          data-broker) to compare how states treat the same category. The stage filter
+          separates laws already in effect from bills still moving, so you can tell a
+          live compliance obligation from one worth watching. Every card links straight
+          to the official bill record, because the dataset only tracks a state once an
+          authoritative legislative source is registered for it. The whole thing is a
+          static site and an open dataset: nothing to log into, and you can host or fork
+          your own copy from the repository.
+        </p>
+      </article>
+
+      <article class="seo__col">
+        <h2 class="seo__title">Frequently asked questions</h2>
+        <dl class="faq">
+          <dt>Which privacy laws does Statute Watch track?</dt>
+          <dd>
+            US state statutes covering geolocation, biometric data, data brokers,
+            comprehensive consumer privacy, health data, and children&rsquo;s data.
+            Federal law and non-privacy statutes are out of scope.
+          </dd>
+          <dt>How current is the data?</dt>
+          <dd>
+            The dataset is curated from official legislative records and refreshed on a
+            schedule. It is a reference, not a real-time alert feed, so confirm any bill
+            against the linked official source before you act on it.
+          </dd>
+          <dt>Is this legal advice?</dt>
+          <dd>
+            No. Statute Watch is an informational tracker for research and monitoring.
+            It does not interpret how a law applies to your organization.
+          </dd>
+          <dt>Where does the data come from?</dt>
+          <dd>
+            Every tracked state is backed by a registered official source (its
+            legislature&rsquo;s own record). A state with no registered source is
+            rejected by the build, so nothing ships without provenance.
+          </dd>
+          <dt>Can I use the dataset in my own tools?</dt>
+          <dd>
+            Yes. The project is MIT licensed and the data ships as plain YAML plus a
+            <code>data.json</code> built alongside this page, so you can query or import it directly.
+          </dd>
+        </dl>
+      </article>
+    </div>
+  </section>
+
   <footer class="foot">
-    <div class="wrap">
-      <p>Statute Watch &middot; MIT licensed &middot; data curated from official legislative records.</p>
-      <p class="foot__note">Informational only — not legal advice.</p>
+    <div class="wrap foot__inner">
+      <div class="foot__meta">
+        <p>Statute Watch &middot; MIT licensed &middot; data curated from official legislative records.</p>
+        <p class="foot__note">Informational only. Not legal advice.</p>
+      </div>
+      <a class="foot__more" href="https://apps.charliekrug.com" rel="noopener">More by Charlie Krug &rarr;</a>
     </div>
   </footer>
 
