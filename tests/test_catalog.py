@@ -80,3 +80,26 @@ def test_duplicate_ids_rejected(tmp_path):
 def test_missing_dataset_raises(tmp_path):
     with pytest.raises(FileNotFoundError):
         load_catalog(tmp_path / "nope.yaml")
+
+
+def test_stage_counts_cover_every_stage_in_canonical_order(catalog):
+    counts = catalog.stage_counts()
+    # Every lifecycle stage is present as a key, in canonical order, and the
+    # counts sum to the whole dataset (each statute has exactly one stage).
+    assert list(counts) == ["introduced", "passed", "enacted", "effective"]
+    assert sum(counts.values()) == len(catalog)
+
+
+def test_non_list_dataset_rejected(tmp_path):
+    dataset = tmp_path / "mapping.yaml"
+    dataset.write_text("id: not-a-list\nstate: CA\n", encoding="utf-8")
+    with pytest.raises(ValidationError, match="must be a YAML list"):
+        load_catalog(dataset)
+
+
+def test_empty_dataset_loads_as_empty_catalog(tmp_path):
+    dataset = tmp_path / "empty.yaml"
+    dataset.write_text("", encoding="utf-8")
+    catalog = load_catalog(dataset)
+    assert len(catalog) == 0
+    assert catalog.states() == []
