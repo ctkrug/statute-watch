@@ -60,6 +60,7 @@ Every asset path is relative, so the site can be hosted at any subpath.
 | `sources` | List the registered legislative sources and their authority. |
 | `fetch <source> --feed FILE` | Stage candidate bills from a source feed into `data/staging/` — never touches the curated dataset. |
 | `diff <source>` | Report how staged candidates differ from the dataset (new / advanced / unchanged). |
+| `merge <source> [--write]` | Preview (or, with `--write`, apply and re-validate) the staged new/advanced records into the dataset. |
 
 ## Refreshing the dataset
 
@@ -68,11 +69,13 @@ The pipeline keeps the dataset current without hand-editing YAML blindly:
 ```bash
 statute-watch fetch congress-ncsl --feed feed.yaml   # -> data/staging/congress-ncsl.yaml
 statute-watch diff  congress-ncsl                    # review new bills & stage advances
+statute-watch merge congress-ncsl --write            # apply reviewed changes + re-validate
 ```
 
 `fetch` is **offline by default** — it reads a local feed file so CI is deterministic; live
-fetching is only enabled with `--network`. A curator reviews the diff, folds approved
-changes into `data/statutes.yaml`, and re-runs `validate`. The
+fetching is only enabled with `--network`. A curator reviews the diff, then `merge --write`
+folds the approved records into `data/statutes.yaml` and re-validates the result (it refuses
+to leave a broken dataset). Editorial summaries still get a human read before shipping. The
 `.github/workflows/build-site.yml` action rebuilds the site on a weekly schedule and on any
 data change; builds are reproducible (same dataset → identical output).
 
