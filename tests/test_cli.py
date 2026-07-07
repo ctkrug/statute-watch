@@ -80,3 +80,26 @@ def test_fetch_network_guard_exits_nonzero(tmp_path, capsys):
 def test_diff_without_target_exits_nonzero(capsys):
     assert main(["diff"]) == 1
     assert "source id or an explicit --staging" in capsys.readouterr().err
+
+
+def test_merge_preview_does_not_write(tmp_path, capsys):
+    main(["fetch", "congress-ncsl", "--feed", FEED, "--staging-dir", str(tmp_path)])
+    capsys.readouterr()
+    out_data = tmp_path / "merged.yaml"
+    assert main(["merge", "congress-ncsl", "--staging-dir", str(tmp_path)]) == 0
+    out = capsys.readouterr().out
+    assert "Preview only" in out
+    assert not out_data.exists()
+
+
+def test_merge_write_applies_and_revalidates(tmp_path, capsys):
+    main(["fetch", "congress-ncsl", "--feed", FEED, "--staging-dir", str(tmp_path)])
+    capsys.readouterr()
+    out_data = tmp_path / "merged.yaml"
+    argv = ["merge", "congress-ncsl", "--staging-dir", str(tmp_path)]
+    argv += ["--write", "--out", str(out_data)]
+    assert main(argv) == 0
+    assert "revalidated OK" in capsys.readouterr().out
+    assert out_data.exists()
+    # The written dataset validates on its own.
+    assert main(["--data", str(out_data), "validate"]) == 0
