@@ -1,5 +1,7 @@
 """Tests for the command-line interface."""
 
+from pathlib import Path
+
 from statute_watch.cli import main
 
 
@@ -52,3 +54,29 @@ def test_sources_lists_registry(capsys):
     out = capsys.readouterr().out
     assert "official" in out
     assert "California Legislative Information" in out
+
+
+FEED = str(Path(__file__).resolve().parent / "fixtures" / "feed_ncsl_sample.yaml")
+
+
+def test_fetch_then_diff_roundtrip(tmp_path, capsys):
+    assert main(
+        ["fetch", "congress-ncsl", "--feed", FEED, "--staging-dir", str(tmp_path)]
+    ) == 0
+    assert "Staged 3 candidate" in capsys.readouterr().out
+
+    assert main(["diff", "congress-ncsl", "--staging-dir", str(tmp_path)]) == 0
+    out = capsys.readouterr().out
+    assert "NEW      ny-s-365-2025" in out
+    assert "ADVANCED ny-s-1042-2025" in out
+    assert "1 new, 1 advanced, 1 unchanged." in out
+
+
+def test_fetch_network_guard_exits_nonzero(tmp_path, capsys):
+    assert main(["fetch", "congress-ncsl", "--staging-dir", str(tmp_path)]) == 1
+    assert "network is disabled" in capsys.readouterr().err
+
+
+def test_diff_without_target_exits_nonzero(capsys):
+    assert main(["diff"]) == 1
+    assert "source id or an explicit --staging" in capsys.readouterr().err
