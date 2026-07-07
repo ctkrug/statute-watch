@@ -49,6 +49,13 @@ def test_status_line_effective_past_reads_since():
     assert status_line(s, today=dt.date(2024, 1, 1)) == "In effect since Jul 2020"
 
 
+def test_status_line_effective_today_is_in_effect():
+    # Boundary: a law whose effective date is exactly today is already in effect,
+    # not a future countdown.
+    s = _statute(stage="effective", effective="2024-01-01")
+    assert status_line(s, today=dt.date(2024, 1, 1)) == "In effect since Jan 2024"
+
+
 def test_status_line_uses_last_action_marker():
     s = _statute(stage="passed", last_action="2023-05-02")
     assert status_line(s, today=dt.date(2024, 1, 1)) == "Passed the legislature · May 2023"
