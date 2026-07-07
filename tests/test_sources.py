@@ -95,3 +95,37 @@ def test_duplicate_source_id_rejected(tmp_path):
 def test_missing_registry_raises(tmp_path):
     with pytest.raises(FileNotFoundError):
         load_sources(tmp_path / "nope.yaml")
+
+
+def test_non_list_registry_rejected(tmp_path):
+    registry = tmp_path / "sources.yaml"
+    registry.write_text("id: not-a-list\n", encoding="utf-8")
+    with pytest.raises(ValidationError, match="must be a YAML list"):
+        load_sources(registry)
+
+
+def test_empty_id_rejected():
+    with pytest.raises(ValidationError, match="id must be a non-empty slug"):
+        Source.from_dict({"name": "X", "url": "https://x.gov", "kind": "index"})
+
+
+def test_empty_name_rejected():
+    with pytest.raises(ValidationError, match="name is empty"):
+        Source.from_dict({"id": "x", "url": "https://x.gov", "kind": "index"})
+
+
+def test_official_source_with_unknown_state_rejected():
+    with pytest.raises(ValidationError, match="unknown state"):
+        Source.from_dict(
+            {"id": "x", "name": "X", "url": "https://x.gov", "kind": "official", "state": "ZZ"}
+        )
+
+
+def test_from_dict_rejects_non_mapping():
+    with pytest.raises(ValidationError, match="expected a source mapping"):
+        Source.from_dict(["not", "a", "mapping"])
+
+
+def test_registry_len_matches_source_count():
+    registry = load_sources()
+    assert len(registry) == len(list(registry))
