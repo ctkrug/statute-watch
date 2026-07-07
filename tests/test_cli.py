@@ -2,7 +2,12 @@
 
 from pathlib import Path
 
-from statute_watch.cli import main
+from statute_watch.catalog import DEFAULT_DATA_PATH
+from statute_watch.cli import _default_data_path, main
+
+
+def test_default_data_path_points_at_bundled_dataset():
+    assert _default_data_path() == DEFAULT_DATA_PATH
 
 
 def test_validate_ok(capsys):
