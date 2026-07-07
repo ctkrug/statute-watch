@@ -1,0 +1,45 @@
+# Saved feed fixture for the pipeline tests — stands in for a source export so
+# tests are deterministic and offline. Three shapes are represented:
+#   * a brand-new bill not in the dataset (ny-s-365-2025)
+#   * a bill already tracked but advanced to a new stage (ny-s-1042-2025)
+#   * a bill already tracked at the same stage (ma-hd-3263-2025, unchanged)
+
+- id: ny-s-365-2025
+  state: NY
+  title: New York Health Information Privacy Act
+  bill_number: S 365
+  categories: [health-data]
+  stage: passed
+  summary: >-
+    Would require opt-in consent before regulated entities process New Yorkers'
+    health information and bar the sale of that data.
+  source_url: https://www.nysenate.gov/legislation/bills/2025/S365
+  introduced: 2025-01-08
+  last_action: 2025-06-20
+
+- id: ny-s-1042-2025
+  state: NY
+  title: New York Data Broker Registration Act
+  bill_number: S 1042
+  categories: [data-broker]
+  stage: enacted
+  summary: >-
+    Would require data brokers operating in New York to register annually,
+    disclose the categories of data they hold, and pay a fee funding state
+    enforcement.
+  source_url: https://www.nysenate.gov/legislation/bills/2025/S1042
+  introduced: 2025-01-08
+  last_action: 2025-07-01
+
+- id: ma-hd-3263-2025
+  state: MA
+  title: Location Shield Act
+  bill_number: HD 3263
+  categories: [geolocation, data-broker]
+  stage: introduced
+  summary: >-
+    Would ban the sale of location data of Massachusetts residents and require a
+    warrant for law enforcement to buy location data from brokers.
+  source_url: https://malegislature.gov/Bills/194/HD3263
+  introduced: 2025-01-17
+  last_action: 2025-01-17
