@@ -137,6 +137,8 @@ data-categories="{escape(data_categories)}" data-stage="{escape(statute.stage)}"
           <div class="card__tags">{cats}</div>
           <p class="card__status">{escape(status_line(statute))}</p>
           <a class="card__link" href="{escape(statute.source_url)}" \
-rel="noopener" target="_blank">Read the bill &rarr;</a>
+rel="noopener" target="_blank" \
+aria-label="Read the bill: {escape(statute.title)} ({escape(statute.bill_number)})">\
+Read the bill &rarr;</a>
         </footer>
       </article>"""

@@ -1,6 +1,7 @@
 """Tests for the static-site builder."""
 
 import json
+import re
 
 from statute_watch.build import build_site, state_coverage
 from statute_watch.catalog import Catalog
@@ -44,6 +45,16 @@ def test_summary_text_is_escaped_and_present(tmp_path, catalog):
     html = (out / "index.html").read_text(encoding="utf-8")
     # A known statute's title should appear in the rendered cards.
     assert "Biometric Information Privacy Act" in html
+
+
+def test_card_links_have_distinct_aria_labels(tmp_path, catalog):
+    # Every "Read the bill" link shares the same visible text, so each needs a
+    # distinct aria-label naming its bill for screen-reader link navigation.
+    out = build_site(tmp_path / "site", catalog=catalog)
+    html = (out / "index.html").read_text(encoding="utf-8")
+    labels = re.findall(r'aria-label="Read the bill: ([^"]+)"', html)
+    assert len(labels) == len(catalog)
+    assert len(set(labels)) == len(labels)  # all distinct
 
 
 def test_state_coverage_is_ranked_and_complete(catalog):
