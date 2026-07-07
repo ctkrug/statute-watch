@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Statute Watch: state privacy law, tracked as it moves</title>
+  <meta name="description" content="Track US state privacy laws across geolocation, biometric, and data-broker rules. Filter by state and data type; every entry says in plain English what changed." />
+  <meta property="og:title" content="Statute Watch" />
+  <meta property="og:description" content="State privacy law, tracked as it moves. Geolocation, biometric, and data-broker rules across the states, filterable, each with a plain-English summary of what changed." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231b2a4a'/%3E%3Cpath d='M16 5l9 4v6c0 5-4 9-9 12-5-3-9-7-9-12V9z' fill='none' stroke='%23e2483d' stroke-width='2.4'/%3E%3Cpath d='M11 16l3.5 3.5L22 12' fill='none' stroke='%23f4f1ea' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap masthead__inner">
+      <a class="wordmark" href="./">
+        <span class="wordmark__glyph" aria-hidden="true">§</span>
+        <span class="wordmark__name">Statute<span class="wordmark__accent">Watch</span></span>
+      </a>
+      <div class="masthead__actions">
+        <p class="masthead__tag">US state privacy law, tracked &amp; explained</p>
+        <a class="ghlink" href="https://github.com/ctkrug/statute-watch" rel="noopener" target="_blank" aria-label="View Statute Watch on GitHub">
+          <svg class="ghlink__mark" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.76-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          <span>View on GitHub</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero__inner">
+      <div class="hero__thesis">
+        <h1 class="hero__headline">Fifty legislatures. One dossier.</h1>
+        <p class="hero__lede">
+          Geolocation, biometric, and data-broker rules as they move through the
+          statehouses. Filter by state and data type; every entry carries a
+          plain-English &ldquo;what changed.&rdquo;
+        </p>
+        <dl class="hero__stats">
+          <div class="stat"><dt>Statutes tracked</dt><dd>28</dd></div>
+          <div class="stat"><dt>States covered</dt><dd>20</dd></div>
+          <div class="stat"><dt>Data types</dt><dd>6</dd></div>
+        </dl>
+      </div>
+      <aside class="coverage" aria-label="Statutes tracked per state">
+        <h2 class="coverage__title">Coverage by state</h2>
+        <ol class="coverage__list">
+        <li class="coverage__row" data-state="TX"><span class="coverage__state">TX</span><span class="coverage__bar"><span class="coverage__fill" style="width:100%"></span></span><span class="coverage__count" aria-label="3 statutes">3</span></li>
+        <li class="coverage__row" data-state="CA"><span class="coverage__state">CA</span><span class="coverage__bar"><span class="coverage__fill" style="width:67%"></span></span><span class="coverage__count" aria-label="2 statutes">2</span></li>
+        <li class="coverage__row" data-state="CO"><span class="coverage__state">CO</span><span class="coverage__bar"><span class="coverage__fill" style="width:67%"></span></span><span class="coverage__count" aria-label="2 statutes">2</span></li>
+        <li class="coverage__row" data-state="CT"><span class="coverage__state">CT</span><span class="coverage__bar"><span class="coverage__fill" style="width:67%"></span></span><span class="coverage__count" aria-label="2 statutes">2</span></li>
+        <li class="coverage__row" data-state="OR"><span class="coverage__state">OR</span><span class="coverage__bar"><span class="coverage__fill" style="width:67%"></span></span><span class="coverage__count" aria-label="2 statutes">2</span></li>
+        <li class="coverage__row" data-state="VA"><span class="coverage__state">VA</span><span class="coverage__bar"><span class="coverage__fill" style="width:67%"></span></span><span class="coverage__count" aria-label="2 statutes">2</span></li>
+        <li class="coverage__row" data-state="WA"><span class="coverage__state">WA</span><span class="coverage__bar"><span class="coverage__fill" style="width:67%"></span></span><span class="coverage__count" aria-label="2 statutes">2</span></li>
+        <li class="coverage__row" data-state="DE"><span class="coverage__state">DE</span><span class="coverage__bar"><span class="coverage__fill" style="width:33%"></span></span><span class="coverage__count" aria-label="1 statute">1</span></li>
+        <li class="coverage__row" data-state="FL"><span class="coverage__state">FL</span><span class="coverage__bar"><span class="coverage__fill" style="width:33%"></span></span><span class="coverage__count" aria-label="1 statute">1</span></li>
+        <li class="coverage__row" data-state="IL"><span class="coverage__state">IL</span><span class="coverage__bar"><span class="coverage__fill" style="width:33%"></span></span><span class="coverage__count" aria-label="1 statute">1</span></li>
+        <li class="coverage__row" data-state="IN"><span class="coverage__state">IN</span><span class="coverage__bar"><span class="coverage__fill" style="width:33%"></span></span><span class="coverage__count" aria-label="1 statute">1</span></li>
+        <li class="coverage__row" data-state="KY"><span class="coverage__state">KY</span><span class="coverage__bar"><span class="coverage__fill" style="width:33%"></span></span><span class="coverage__count" aria-label="1 statute">1</span></li>
+        <li class="coverage__row" data-state="MA"><span class="coverage__state">MA</span><span class="coverage__bar"><span class="coverage__fill" style="width:33%"></span></span><span class="coverage__count" aria-label="1 statute">1</span></li>
+        <li class="coverage__row" data-state="MD"><span class="coverage__state">MD</span><span class="coverage__bar"><span class="coverage__fill" style="width:33%"></span></span><span class="coverage__count" aria-label="1 statute">1</span></li>
+        <li class="coverage__row" data-state="MN"><span class="coverage__state">MN</span><span class="coverage__bar"><span class="coverage__fill" style="width:33%"></span></span><span class="coverage__count" aria-label="1 statute">1</span></li>
+        <li class="coverage__row" data-state="MT"><span class="coverage__state">MT</span><span class="coverage__bar"><span class="coverage__fill" style="width:33%"></span></span><span class="coverage__count" aria-label="1 statute">1</span></li>
+        <li class="coverage__row" data-state="NJ"><span class="coverage__state">NJ</span><span class="coverage__bar"><span class="coverage__fill" style="width:33%"></span></span><span class="coverage__count" aria-label="1 statute">1</span></li>
+        <li class="coverage__row" data-state="NY"><span class="coverage__state">NY</span><span class="coverage__bar"><span class="coverage__fill" style="width:33%"></span></span><span class="coverage__count" aria-label="1 statute">1</span></li>
+        <li class="coverage__row" data-state="TN"><span class="coverage__state">TN</span><span class="coverage__bar"><span class="coverage__fill" style="width:33%"></span></span><span class="coverage__count" aria-label="1 statute">1</span></li>
+        <li class="coverage__row" data-state="UT"><span class="coverage__state">UT</span><span class="coverage__bar"><span class="coverage__fill" style="width:33%"></span></span><span class="coverage__count" aria-label="1 statute">1</span></li>
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <main class="wrap main">
+    <form class="filters" aria-label="Filter statutes">
+      <div class="filters__group">
+        <label for="f-state">State</label>
+        <select id="f-state" name="state"><option value="">All states</option></select>
+      </div>
+      <div class="filters__group">
+        <label for="f-category">Data type</label>
+        <select id="f-category" name="category"><option value="">All data types</option></select>
+      </div>
+      <div class="filters__group">
+        <label for="f-stage">Stage</label>
+        <select id="f-stage" name="stage"><option value="">Any stage</option></select>
+      </div>
+      <button type="reset" class="filters__reset">Clear</button>
+    </form>
+
+    <p class="resultbar" role="status" aria-live="polite">
+      <span id="result-count">28</span> statutes
+    </p>
+
+    <section class="grid" id="grid">
+            <article class="card" data-state="MD" data-categories="comprehensive childrens geolocation" data-stage="effective">
+        <header class="card__head">
+          <span class="card__state">MD</span>
+          <span class="card__stage card__stage--effective">In effect</span>
+        </header>
+        <h3 class="card__title">Maryland Online Data Privacy Act</h3>
+        <p class="card__bill">SB 541</p>
+        <p class="card__summary">Among the strictest US privacy laws: imposes strong data-minimization duties, bans the sale of sensitive data outright, prohibits targeted advertising to anyone under 18, and treats precise geolocation as sensitive.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--comprehensive">Comprehensive</span><span class="tag tag--childrens">Children&#x27;s data</span><span class="tag tag--geolocation">Geolocation</span></div>
+          <p class="card__status">In effect since Oct 2025</p>
+          <a class="card__link" href="https://mgaleg.maryland.gov/mgawebsite/Legislation/Details/SB0541?ys=2024RS" rel="noopener" target="_blank" aria-label="Read the bill: Maryland Online Data Privacy Act (SB 541)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="MN" data-categories="comprehensive" data-stage="effective">
+        <header class="card__head">
+          <span class="card__state">MN</span>
+          <span class="card__stage card__stage--effective">In effect</span>
+        </header>
+        <h3 class="card__title">Minnesota Consumer Data Privacy Act</h3>
+        <p class="card__bill">HF 4757</p>
+        <p class="card__summary">Grants standard consumer rights plus two novel ones: the right to question the result of automated profiling decisions and the right to obtain a list of the specific third parties a controller has shared data with.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--comprehensive">Comprehensive</span></div>
+          <p class="card__status">In effect since Jul 2025</p>
+          <a class="card__link" href="https://www.revisor.mn.gov/bills/bill.php?b=House&amp;f=HF4757&amp;ssn=0&amp;y=2024" rel="noopener" target="_blank" aria-label="Read the bill: Minnesota Consumer Data Privacy Act (HF 4757)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="TN" data-categories="comprehensive" data-stage="effective">
+        <header class="card__head">
+          <span class="card__state">TN</span>
+          <span class="card__stage card__stage--effective">In effect</span>
+        </header>
+        <h3 class="card__title">Tennessee Information Protection Act</h3>
+        <p class="card__bill">HB 1181</p>
+        <p class="card__summary">Grants standard consumer data rights and is unique in offering businesses an affirmative defense if they maintain a written privacy program conforming to the NIST privacy framework.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--comprehensive">Comprehensive</span></div>
+          <p class="card__status">In effect since Jul 2025</p>
+          <a class="card__link" href="https://wapp.capitol.tn.gov/apps/BillInfo/Default.aspx?BillNumber=HB1181&amp;GA=113" rel="noopener" target="_blank" aria-label="Read the bill: Tennessee Information Protection Act (HB 1181)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="NY" data-categories="data-broker" data-stage="passed">
+        <header class="card__head">
+          <span class="card__state">NY</span>
+          <span class="card__stage card__stage--passed">Passed</span>
+        </header>
+        <h3 class="card__title">New York Data Broker Registration Act</h3>
+        <p class="card__bill">S 1042</p>
+        <p class="card__summary">Would require data brokers operating in New York to register annually, disclose the categories of data they hold, and pay a fee funding state enforcement.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--data-broker">Data broker</span></div>
+          <p class="card__status">Passed the legislature · Jun 2025</p>
+          <a class="card__link" href="https://www.nysenate.gov/legislation/bills/2025/S1042" rel="noopener" target="_blank" aria-label="Read the bill: New York Data Broker Registration Act (S 1042)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="MT" data-categories="comprehensive childrens" data-stage="enacted">
+        <header class="card__head">
+          <span class="card__state">MT</span>
+          <span class="card__stage card__stage--enacted">Enacted</span>
+        </header>
+        <h3 class="card__title">Montana Consumer Data Privacy Act Amendments</h3>
+        <p class="card__bill">SB 384</p>
+        <p class="card__summary">Lowers the applicability thresholds of Montana&#x27;s privacy law and adds opt-in consent requirements for processing the personal data of known minors.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--comprehensive">Comprehensive</span><span class="tag tag--childrens">Children&#x27;s data</span></div>
+          <p class="card__status">Signed into law · May 2025</p>
+          <a class="card__link" href="https://bills.legmt.gov/#/laws/bill/2/LC2131" rel="noopener" target="_blank" aria-label="Read the bill: Montana Consumer Data Privacy Act Amendments (SB 384)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="VA" data-categories="geolocation health-data" data-stage="passed">
+        <header class="card__head">
+          <span class="card__state">VA</span>
+          <span class="card__stage card__stage--passed">Passed</span>
+        </header>
+        <h3 class="card__title">Reproductive and Sexual Health Location Privacy</h3>
+        <p class="card__bill">HB 707</p>
+        <p class="card__summary">Would prohibit obtaining, retaining, or selling location data that identifies a person&#x27;s presence at a reproductive- or sexual-health facility without express consent.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--geolocation">Geolocation</span><span class="tag tag--health-data">Health data</span></div>
+          <p class="card__status">Passed the legislature · Feb 2025</p>
+          <a class="card__link" href="https://lis.virginia.gov/cgi-bin/legp604.exe?251+sum+HB707" rel="noopener" target="_blank" aria-label="Read the bill: Reproductive and Sexual Health Location Privacy (HB 707)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="MA" data-categories="geolocation data-broker" data-stage="introduced">
+        <header class="card__head">
+          <span class="card__state">MA</span>
+          <span class="card__stage card__stage--introduced">Introduced</span>
+        </header>
+        <h3 class="card__title">Location Shield Act</h3>
+        <p class="card__bill">HD 3263</p>
+        <p class="card__summary">Would ban the sale of location data of Massachusetts residents and require a warrant for law enforcement to buy location data from brokers.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--geolocation">Geolocation</span><span class="tag tag--data-broker">Data broker</span></div>
+          <p class="card__status">Introduced · Jan 2025</p>
+          <a class="card__link" href="https://malegislature.gov/Bills/194/HD3263" rel="noopener" target="_blank" aria-label="Read the bill: Location Shield Act (HD 3263)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="NJ" data-categories="comprehensive childrens" data-stage="effective">
+        <header class="card__head">
+          <span class="card__state">NJ</span>
+          <span class="card__stage card__stage--effective">In effect</span>
+        </header>
+        <h3 class="card__title">New Jersey Data Privacy Act</h3>
+        <p class="card__bill">S 332</p>
+        <p class="card__summary">Establishes consumer data rights, requires recognition of universal opt-out signals, and mandates opt-in consent to sell or use for targeted advertising the data of consumers aged 13 to 17.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--comprehensive">Comprehensive</span><span class="tag tag--childrens">Children&#x27;s data</span></div>
+          <p class="card__status">In effect since Jan 2025</p>
+          <a class="card__link" href="https://www.njleg.state.nj.us/bill-search/2022/S332" rel="noopener" target="_blank" aria-label="Read the bill: New Jersey Data Privacy Act (S 332)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="DE" data-categories="comprehensive childrens" data-stage="effective">
+        <header class="card__head">
+          <span class="card__state">DE</span>
+          <span class="card__stage card__stage--effective">In effect</span>
+        </header>
+        <h3 class="card__title">Delaware Personal Data Privacy Act</h3>
+        <p class="card__bill">HB 154</p>
+        <p class="card__summary">Grants full consumer data rights with one of the lowest applicability thresholds in the country, and requires opt-in consent to process the data of consumers known to be aged 13 to 17.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--comprehensive">Comprehensive</span><span class="tag tag--childrens">Children&#x27;s data</span></div>
+          <p class="card__status">In effect since Jan 2025</p>
+          <a class="card__link" href="https://legis.delaware.gov/BillDetail?LegislationId=140388" rel="noopener" target="_blank" aria-label="Read the bill: Delaware Personal Data Privacy Act (HB 154)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="TX" data-categories="data-broker" data-stage="effective">
+        <header class="card__head">
+          <span class="card__state">TX</span>
+          <span class="card__stage card__stage--effective">In effect</span>
+        </header>
+        <h3 class="card__title">Texas Data Broker Registration Law</h3>
+        <p class="card__bill">SB 2105</p>
+        <p class="card__summary">Requires data brokers deriving revenue from processing Texans&#x27; data to register annually with the secretary of state, disclose their practices, and maintain a comprehensive information-security program.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--data-broker">Data broker</span></div>
+          <p class="card__status">In effect since Sep 2024</p>
+          <a class="card__link" href="https://capitol.texas.gov/BillLookup/History.aspx?LegSess=88R&amp;Bill=SB2105" rel="noopener" target="_blank" aria-label="Read the bill: Texas Data Broker Registration Law (SB 2105)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="TX" data-categories="comprehensive data-broker" data-stage="effective">
+        <header class="card__head">
+          <span class="card__state">TX</span>
+          <span class="card__stage card__stage--effective">In effect</span>
+        </header>
+        <h3 class="card__title">Texas Data Privacy and Security Act</h3>
+        <p class="card__bill">HB 4</p>
+        <p class="card__summary">Gives Texans rights to access, correct, and delete personal data and to opt out of targeted advertising and sale; applies to most businesses regardless of revenue, unlike the revenue thresholds in other states.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--comprehensive">Comprehensive</span><span class="tag tag--data-broker">Data broker</span></div>
+          <p class="card__status">In effect since Jul 2024</p>
+          <a class="card__link" href="https://capitol.texas.gov/BillLookup/History.aspx?LegSess=88R&amp;Bill=HB4" rel="noopener" target="_blank" aria-label="Read the bill: Texas Data Privacy and Security Act (HB 4)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="OR" data-categories="comprehensive biometric" data-stage="effective">
+        <header class="card__head">
+          <span class="card__state">OR</span>
+          <span class="card__stage card__stage--effective">In effect</span>
+        </header>
+        <h3 class="card__title">Oregon Consumer Privacy Act</h3>
+        <p class="card__bill">SB 619</p>
+        <p class="card__summary">Establishes consumer data rights and, unusually, names specific biometric and precise-geolocation data as sensitive categories requiring opt-in consent before processing.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--comprehensive">Comprehensive</span><span class="tag tag--biometric">Biometric</span></div>
+          <p class="card__status">In effect since Jul 2024</p>
+          <a class="card__link" href="https://olis.oregonlegislature.gov/liz/2023R1/Measures/Overview/SB619" rel="noopener" target="_blank" aria-label="Read the bill: Oregon Consumer Privacy Act (SB 619)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="FL" data-categories="comprehensive childrens geolocation" data-stage="effective">
+        <header class="card__head">
+          <span class="card__state">FL</span>
+          <span class="card__stage card__stage--effective">In effect</span>
+        </header>
+        <h3 class="card__title">Florida Digital Bill of Rights</h3>
+        <p class="card__bill">SB 262</p>
+        <p class="card__summary">Applies broad consumer-privacy duties to very large technology firms and restricts collection of precise geolocation and children&#x27;s data, with the state attorney general as sole enforcer.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--comprehensive">Comprehensive</span><span class="tag tag--childrens">Children&#x27;s data</span><span class="tag tag--geolocation">Geolocation</span></div>
+          <p class="card__status">In effect since Jul 2024</p>
+          <a class="card__link" href="https://www.flsenate.gov/Session/Bill/2023/262" rel="noopener" target="_blank" aria-label="Read the bill: Florida Digital Bill of Rights (SB 262)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="CO" data-categories="biometric" data-stage="enacted">
+        <header class="card__head">
+          <span class="card__state">CO</span>
+          <span class="card__stage card__stage--enacted">Enacted</span>
+        </header>
+        <h3 class="card__title">Colorado Privacy Act — Biometric Amendment</h3>
+        <p class="card__bill">HB 24-1130</p>
+        <p class="card__summary">Amends the Colorado Privacy Act to add explicit protections for biometric identifiers, requiring a written policy, consent before collection, and retention limits tied to the purpose of collection.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--biometric">Biometric</span></div>
+          <p class="card__status">Signed into law · May 2024</p>
+          <a class="card__link" href="https://leg.colorado.gov/bills/hb24-1130" rel="noopener" target="_blank" aria-label="Read the bill: Colorado Privacy Act — Biometric Amendment (HB 24-1130)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="KY" data-categories="comprehensive" data-stage="enacted">
+        <header class="card__head">
+          <span class="card__state">KY</span>
+          <span class="card__stage card__stage--enacted">Enacted</span>
+        </header>
+        <h3 class="card__title">Kentucky Consumer Data Protection Act</h3>
+        <p class="card__bill">HB 15</p>
+        <p class="card__summary">Closely tracks the Virginia model — access, correction, deletion, and opt-out rights with opt-in consent for sensitive data — and takes effect at the start of 2026.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--comprehensive">Comprehensive</span></div>
+          <p class="card__status">Signed into law · Apr 2024</p>
+          <a class="card__link" href="https://apps.legislature.ky.gov/record/24rs/hb15.html" rel="noopener" target="_blank" aria-label="Read the bill: Kentucky Consumer Data Protection Act (HB 15)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="WA" data-categories="health-data geolocation" data-stage="effective">
+        <header class="card__head">
+          <span class="card__state">WA</span>
+          <span class="card__stage card__stage--effective">In effect</span>
+        </header>
+        <h3 class="card__title">My Health My Data Act</h3>
+        <p class="card__bill">HB 1155</p>
+        <p class="card__summary">Protects consumer health data — including location data that could reveal a visit to a health facility — with consent requirements, a geofencing ban around health-care sites, and a private right of action.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--health-data">Health data</span><span class="tag tag--geolocation">Geolocation</span></div>
+          <p class="card__status">In effect since Mar 2024</p>
+          <a class="card__link" href="https://app.leg.wa.gov/billsummary?BillNumber=1155&amp;Year=2023" rel="noopener" target="_blank" aria-label="Read the bill: My Health My Data Act (HB 1155)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="OR" data-categories="data-broker" data-stage="effective">
+        <header class="card__head">
+          <span class="card__state">OR</span>
+          <span class="card__stage card__stage--effective">In effect</span>
+        </header>
+        <h3 class="card__title">Oregon Data Broker Registration Act</h3>
+        <p class="card__bill">HB 2052</p>
+        <p class="card__summary">Requires data brokers that collect and sell Oregonians&#x27; personal data to register with the Department of Consumer and Business Services before doing business in the state.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--data-broker">Data broker</span></div>
+          <p class="card__status">In effect since Jan 2024</p>
+          <a class="card__link" href="https://olis.oregonlegislature.gov/liz/2023R1/Measures/Overview/HB2052" rel="noopener" target="_blank" aria-label="Read the bill: Oregon Data Broker Registration Act (HB 2052)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="UT" data-categories="comprehensive" data-stage="effective">
+        <header class="card__head">
+          <span class="card__state">UT</span>
+          <span class="card__stage card__stage--effective">In effect</span>
+        </header>
+        <h3 class="card__title">Utah Consumer Privacy Act</h3>
+        <p class="card__bill">SB 227</p>
+        <p class="card__summary">A deliberately business-friendly comprehensive law: consumers may access, delete, and opt out of sales and targeted advertising, but it omits rights to correct data and gives no universal opt-out mandate.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--comprehensive">Comprehensive</span></div>
+          <p class="card__status">In effect since Dec 2023</p>
+          <a class="card__link" href="https://le.utah.gov/~2022/bills/static/SB0227.html" rel="noopener" target="_blank" aria-label="Read the bill: Utah Consumer Privacy Act (SB 227)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="CA" data-categories="data-broker" data-stage="enacted">
+        <header class="card__head">
+          <span class="card__state">CA</span>
+          <span class="card__stage card__stage--enacted">Enacted</span>
+        </header>
+        <h3 class="card__title">Delete Act</h3>
+        <p class="card__bill">SB 362</p>
+        <p class="card__summary">Directs the California Privacy Protection Agency to build a single deletion mechanism that lets residents delete their data from every registered data broker with one request, and tightens broker-registration requirements.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--data-broker">Data broker</span></div>
+          <p class="card__status">Signed into law · Oct 2023</p>
+          <a class="card__link" href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240SB362" rel="noopener" target="_blank" aria-label="Read the bill: Delete Act (SB 362)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="CT" data-categories="childrens health-data" data-stage="effective">
+        <header class="card__head">
+          <span class="card__state">CT</span>
+          <span class="card__stage card__stage--effective">In effect</span>
+        </header>
+        <h3 class="card__title">Act Concerning Online Privacy, Data and Safety Protections</h3>
+        <p class="card__bill">SB 3</p>
+        <p class="card__summary">Extends Connecticut&#x27;s privacy law with heightened duties for minors&#x27; data and new protections for consumer health and reproductive-health information.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--childrens">Children&#x27;s data</span><span class="tag tag--health-data">Health data</span></div>
+          <p class="card__status">In effect since Oct 2023</p>
+          <a class="card__link" href="https://www.cga.ct.gov/asp/cgabillstatus/cgabillstatus.asp?selBillType=Bill&amp;bill_num=SB00003" rel="noopener" target="_blank" aria-label="Read the bill: Act Concerning Online Privacy, Data and Safety Protections (SB 3)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="CT" data-categories="comprehensive" data-stage="effective">
+        <header class="card__head">
+          <span class="card__state">CT</span>
+          <span class="card__stage card__stage--effective">In effect</span>
+        </header>
+        <h3 class="card__title">Connecticut Data Privacy Act</h3>
+        <p class="card__bill">SB 6</p>
+        <p class="card__summary">Grants standard consumer data rights with opt-in consent for sensitive data and, like Colorado, mandates recognition of a universal opt-out signal; among the stronger of the &quot;Virginia-model&quot; laws.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--comprehensive">Comprehensive</span></div>
+          <p class="card__status">In effect since Jul 2023</p>
+          <a class="card__link" href="https://www.cga.ct.gov/asp/cgabillstatus/cgabillstatus.asp?selBillType=Bill&amp;which_year=2022&amp;bill_num=6" rel="noopener" target="_blank" aria-label="Read the bill: Connecticut Data Privacy Act (SB 6)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="CO" data-categories="comprehensive" data-stage="effective">
+        <header class="card__head">
+          <span class="card__state">CO</span>
+          <span class="card__stage card__stage--effective">In effect</span>
+        </header>
+        <h3 class="card__title">Colorado Privacy Act</h3>
+        <p class="card__bill">SB 21-190</p>
+        <p class="card__summary">Establishes access, correction, deletion, and opt-out rights and, notably, requires businesses to honor a universal opt-out browser signal for the sale of data and targeted advertising.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--comprehensive">Comprehensive</span></div>
+          <p class="card__status">In effect since Jul 2023</p>
+          <a class="card__link" href="https://leg.colorado.gov/bills/sb21-190" rel="noopener" target="_blank" aria-label="Read the bill: Colorado Privacy Act (SB 21-190)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="IN" data-categories="comprehensive" data-stage="enacted">
+        <header class="card__head">
+          <span class="card__state">IN</span>
+          <span class="card__stage card__stage--enacted">Enacted</span>
+        </header>
+        <h3 class="card__title">Indiana Consumer Data Protection Act</h3>
+        <p class="card__bill">SB 5</p>
+        <p class="card__summary">A Virginia-model comprehensive law granting access, correction, deletion, and opt-out rights; enacted in 2023 with an unusually long runway before it takes effect at the start of 2026.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--comprehensive">Comprehensive</span></div>
+          <p class="card__status">Signed into law · May 2023</p>
+          <a class="card__link" href="https://iga.in.gov/legislative/2023/bills/senate/5" rel="noopener" target="_blank" aria-label="Read the bill: Indiana Consumer Data Protection Act (SB 5)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="VA" data-categories="comprehensive" data-stage="effective">
+        <header class="card__head">
+          <span class="card__state">VA</span>
+          <span class="card__stage card__stage--effective">In effect</span>
+        </header>
+        <h3 class="card__title">Virginia Consumer Data Protection Act</h3>
+        <p class="card__bill">SB 1392</p>
+        <p class="card__summary">The second US comprehensive privacy law, and the template many later states copied: consumer rights to access, correct, delete, and opt out, plus opt-in consent for sensitive data, enforced solely by the attorney general.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--comprehensive">Comprehensive</span></div>
+          <p class="card__status">In effect since Jan 2023</p>
+          <a class="card__link" href="https://lis.virginia.gov/cgi-bin/legp604.exe?211+sum+SB1392" rel="noopener" target="_blank" aria-label="Read the bill: Virginia Consumer Data Protection Act (SB 1392)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="CA" data-categories="comprehensive" data-stage="effective">
+        <header class="card__head">
+          <span class="card__state">CA</span>
+          <span class="card__stage card__stage--effective">In effect</span>
+        </header>
+        <h3 class="card__title">California Consumer Privacy Act (as amended by the CPRA)</h3>
+        <p class="card__bill">AB 375 / Prop 24</p>
+        <p class="card__summary">The first comprehensive US consumer-privacy law: grants rights to know, delete, correct, and opt out of the sale or sharing of personal information, and — via the 2020 CPRA amendment — adds a dedicated enforcement agency and a sensitive-personal-information category.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--comprehensive">Comprehensive</span></div>
+          <p class="card__status">In effect since Jan 2023</p>
+          <a class="card__link" href="https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?division=3.&amp;part=4.&amp;lawCode=CIV&amp;title=1.81.5" rel="noopener" target="_blank" aria-label="Read the bill: California Consumer Privacy Act (as amended by the CPRA) (AB 375 / Prop 24)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="WA" data-categories="biometric" data-stage="effective">
+        <header class="card__head">
+          <span class="card__state">WA</span>
+          <span class="card__stage card__stage--effective">In effect</span>
+        </header>
+        <h3 class="card__title">Washington Biometric Privacy Act</h3>
+        <p class="card__bill">HB 1493</p>
+        <p class="card__summary">Prohibits enrolling a biometric identifier in a database for a commercial purpose without notice and consent, and restricts selling or leasing that data; enforced by the attorney general.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--biometric">Biometric</span></div>
+          <p class="card__status">In effect since Jul 2017</p>
+          <a class="card__link" href="https://app.leg.wa.gov/billsummary?BillNumber=1493&amp;Year=2017" rel="noopener" target="_blank" aria-label="Read the bill: Washington Biometric Privacy Act (HB 1493)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="TX" data-categories="biometric" data-stage="effective">
+        <header class="card__head">
+          <span class="card__state">TX</span>
+          <span class="card__stage card__stage--effective">In effect</span>
+        </header>
+        <h3 class="card__title">Capture or Use of Biometric Identifier Act</h3>
+        <p class="card__bill">Bus. &amp; Com. Code 503.001</p>
+        <p class="card__summary">Bars capturing a person&#x27;s biometric identifier for commercial use without consent and requires reasonable retention limits; unlike Illinois it is enforced only by the attorney general, with no private right of action.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--biometric">Biometric</span></div>
+          <p class="card__status">In effect since Sep 2009</p>
+          <a class="card__link" href="https://statutes.capitol.texas.gov/Docs/BC/htm/BC.503.htm" rel="noopener" target="_blank" aria-label="Read the bill: Capture or Use of Biometric Identifier Act (Bus. &amp; Com. Code 503.001)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+      <article class="card" data-state="IL" data-categories="biometric" data-stage="effective">
+        <header class="card__head">
+          <span class="card__state">IL</span>
+          <span class="card__stage card__stage--effective">In effect</span>
+        </header>
+        <h3 class="card__title">Biometric Information Privacy Act</h3>
+        <p class="card__bill">740 ILCS 14</p>
+        <p class="card__summary">Requires private entities to obtain written consent before collecting fingerprints, faceprints, or other biometric identifiers, and creates a private right of action for violations — the strictest biometric regime in the country.</p>
+        <footer class="card__foot">
+          <div class="card__tags"><span class="tag tag--biometric">Biometric</span></div>
+          <p class="card__status">In effect since Oct 2008</p>
+          <a class="card__link" href="https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=3004" rel="noopener" target="_blank" aria-label="Read the bill: Biometric Information Privacy Act (740 ILCS 14)">Read the bill &rarr;</a>
+        </footer>
+      </article>
+    </section>
+
+    <p class="empty" id="empty" hidden>No statutes match those filters yet.</p>
+  </main>
+
+  <section class="seo" aria-labelledby="about-heading">
+    <div class="wrap seo__inner">
+      <article class="seo__col">
+        <h2 id="about-heading" class="seo__title">What Statute Watch is for</h2>
+        <p>
+          US state privacy law is a moving target. Every session, states introduce,
+          amend, pass, and bring into force bills touching location tracking, biometric
+          identifiers, data-broker registration, and comprehensive consumer-privacy
+          rights. The signal that matters to a privacy or compliance team, which state
+          just changed which obligation, is scattered across fifty legislatures and
+          buried in statutory language few people have time to read.
+        </p>
+        <p>
+          Statute Watch collects those changes into one browsable dossier. Each entry
+          records the state, the bill number, the data types it governs, where it sits
+          in its lifecycle (introduced, passed, enacted, or in effect), and a short
+          plain-English note on what the law actually requires. You filter by state and
+          data type to see exactly the slice you own, instead of keeping fifty bill
+          trackers open in browser tabs.
+        </p>
+        <h3 class="seo__sub">How to use it</h3>
+        <p>
+          Pick a state to see everything tracked there, or a data type (say biometric or
+          data-broker) to compare how states treat the same category. The stage filter
+          separates laws already in effect from bills still moving, so you can tell a
+          live compliance obligation from one worth watching. Every card links straight
+          to the official bill record, because the dataset only tracks a state once an
+          authoritative legislative source is registered for it. The whole thing is a
+          static site and an open dataset: nothing to log into, and you can host or fork
+          your own copy from the repository.
+        </p>
+      </article>
+
+      <article class="seo__col">
+        <h2 class="seo__title">Frequently asked questions</h2>
+        <dl class="faq">
+          <dt>Which privacy laws does Statute Watch track?</dt>
+          <dd>
+            US state statutes covering geolocation, biometric data, data brokers,
+            comprehensive consumer privacy, health data, and children&rsquo;s data.
+            Federal law and non-privacy statutes are out of scope.
+          </dd>
+          <dt>How current is the data?</dt>
+          <dd>
+            The dataset is curated from official legislative records and refreshed on a
+            schedule. It is a reference, not a real-time alert feed, so confirm any bill
+            against the linked official source before you act on it.
+          </dd>
+          <dt>Is this legal advice?</dt>
+          <dd>
+            No. Statute Watch is an informational tracker for research and monitoring.
+            It does not interpret how a law applies to your organization.
+          </dd>
+          <dt>Where does the data come from?</dt>
+          <dd>
+            Every tracked state is backed by a registered official source (its
+            legislature&rsquo;s own record). A state with no registered source is
+            rejected by the build, so nothing ships without provenance.
+          </dd>
+          <dt>Can I use the dataset in my own tools?</dt>
+          <dd>
+            Yes. The project is MIT licensed and the data ships as plain YAML plus a
+            <code>data.json</code> built alongside this page, so you can query or import it directly.
+          </dd>
+        </dl>
+      </article>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="wrap foot__inner">
+      <div class="foot__meta">
+        <p>Statute Watch &middot; MIT licensed &middot; data curated from official legislative records.</p>
+        <p class="foot__note">Informational only. Not legal advice.</p>
+      </div>
+      <a class="foot__more" href="https://apps.charliekrug.com" rel="noopener">More by Charlie Krug &rarr;</a>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATUTE_DATA__ = {"statutes": [{"id": "md-sb-541-2024", "state": "MD", "title": "Maryland Online Data Privacy Act", "bill_number": "SB 541", "categories": ["comprehensive", "childrens", "geolocation"], "stage": "effective", "summary": "Among the strictest US privacy laws: imposes strong data-minimization duties, bans the sale of sensitive data outright, prohibits targeted advertising to anyone under 18, and treats precise geolocation as sensitive.", "source_url": "https://mgaleg.maryland.gov/mgawebsite/Legislation/Details/SB0541?ys=2024RS", "introduced": "2024-01-31", "last_action": "2025-10-01", "effective": "2025-10-01", "tags": ["data-minimization", "sensitive-data", "minors"]}, {"id": "mn-hf-4757-2024", "state": "MN", "title": "Minnesota Consumer Data Privacy Act", "bill_number": "HF 4757", "categories": ["comprehensive"], "stage": "effective", "summary": "Grants standard consumer rights plus two novel ones: the right to question the result of automated profiling decisions and the right to obtain a list of the specific third parties a controller has shared data with.", "source_url": "https://www.revisor.mn.gov/bills/bill.php?b=House&f=HF4757&ssn=0&y=2024", "introduced": "2024-03-11", "last_action": "2025-07-31", "effective": "2025-07-31", "tags": ["profiling", "third-party-disclosure"]}, {"id": "tn-hb-1181-2023", "state": "TN", "title": "Tennessee Information Protection Act", "bill_number": "HB 1181", "categories": ["comprehensive"], "stage": "effective", "summary": "Grants standard consumer data rights and is unique in offering businesses an affirmative defense if they maintain a written privacy program conforming to the NIST privacy framework.", "source_url": "https://wapp.capitol.tn.gov/apps/BillInfo/Default.aspx?BillNumber=HB1181&GA=113", "introduced": "2023-01-31", "last_action": "2025-07-01", "effective": "2025-07-01", "tags": ["nist-framework", "affirmative-defense"]}, {"id": "ny-s-1042-2025", "state": "NY", "title": "New York Data Broker Registration Act", "bill_number": "S 1042", "categories": ["data-broker"], "stage": "passed", "summary": "Would require data brokers operating in New York to register annually, disclose the categories of data they hold, and pay a fee funding state enforcement.", "source_url": "https://www.nysenate.gov/legislation/bills/2025/S1042", "introduced": "2025-01-08", "last_action": "2025-06-12", "effective": null, "tags": ["registration", "enforcement-fund"]}, {"id": "mt-sb-384-2025", "state": "MT", "title": "Montana Consumer Data Privacy Act Amendments", "bill_number": "SB 384", "categories": ["comprehensive", "childrens"], "stage": "enacted", "summary": "Lowers the applicability thresholds of Montana's privacy law and adds opt-in consent requirements for processing the personal data of known minors.", "source_url": "https://bills.legmt.gov/#/laws/bill/2/LC2131", "introduced": "2025-02-14", "last_action": "2025-05-08", "effective": "2025-10-01", "tags": ["thresholds", "minors"]}, {"id": "va-hb-707-2025", "state": "VA", "title": "Reproductive and Sexual Health Location Privacy", "bill_number": "HB 707", "categories": ["geolocation", "health-data"], "stage": "passed", "summary": "Would prohibit obtaining, retaining, or selling location data that identifies a person's presence at a reproductive- or sexual-health facility without express consent.", "source_url": "https://lis.virginia.gov/cgi-bin/legp604.exe?251+sum+HB707", "introduced": "2025-01-06", "last_action": "2025-02-04", "effective": null, "tags": ["location-data", "reproductive-health"]}, {"id": "ma-hd-3263-2025", "state": "MA", "title": "Location Shield Act", "bill_number": "HD 3263", "categories": ["geolocation", "data-broker"], "stage": "introduced", "summary": "Would ban the sale of location data of Massachusetts residents and require a warrant for law enforcement to buy location data from brokers.", "source_url": "https://malegislature.gov/Bills/194/HD3263", "introduced": "2025-01-17", "last_action": "2025-01-17", "effective": null, "tags": ["sale-ban", "warrant"]}, {"id": "nj-s-332-2024", "state": "NJ", "title": "New Jersey Data Privacy Act", "bill_number": "S 332", "categories": ["comprehensive", "childrens"], "stage": "effective", "summary": "Establishes consumer data rights, requires recognition of universal opt-out signals, and mandates opt-in consent to sell or use for targeted advertising the data of consumers aged 13 to 17.", "source_url": "https://www.njleg.state.nj.us/bill-search/2022/S332", "introduced": "2022-01-11", "last_action": "2025-01-15", "effective": "2025-01-15", "tags": ["universal-opt-out", "teens"]}, {"id": "de-hb-154-2023", "state": "DE", "title": "Delaware Personal Data Privacy Act", "bill_number": "HB 154", "categories": ["comprehensive", "childrens"], "stage": "effective", "summary": "Grants full consumer data rights with one of the lowest applicability thresholds in the country, and requires opt-in consent to process the data of consumers known to be aged 13 to 17.", "source_url": "https://legis.delaware.gov/BillDetail?LegislationId=140388", "introduced": "2023-05-16", "last_action": "2025-01-01", "effective": "2025-01-01", "tags": ["low-threshold", "teens"]}, {"id": "tx-sb-2105-2023", "state": "TX", "title": "Texas Data Broker Registration Law", "bill_number": "SB 2105", "categories": ["data-broker"], "stage": "effective", "summary": "Requires data brokers deriving revenue from processing Texans' data to register annually with the secretary of state, disclose their practices, and maintain a comprehensive information-security program.", "source_url": "https://capitol.texas.gov/BillLookup/History.aspx?LegSess=88R&Bill=SB2105", "introduced": "2023-03-08", "last_action": "2024-09-01", "effective": "2024-09-01", "tags": ["registration", "security-program"]}, {"id": "tx-hb-4-2023", "state": "TX", "title": "Texas Data Privacy and Security Act", "bill_number": "HB 4", "categories": ["comprehensive", "data-broker"], "stage": "effective", "summary": "Gives Texans rights to access, correct, and delete personal data and to opt out of targeted advertising and sale; applies to most businesses regardless of revenue, unlike the revenue thresholds in other states.", "source_url": "https://capitol.texas.gov/BillLookup/History.aspx?LegSess=88R&Bill=HB4", "introduced": "2023-03-02", "last_action": "2024-07-01", "effective": "2024-07-01", "tags": ["opt-out", "targeted-advertising"]}, {"id": "or-sb-619-2023", "state": "OR", "title": "Oregon Consumer Privacy Act", "bill_number": "SB 619", "categories": ["comprehensive", "biometric"], "stage": "effective", "summary": "Establishes consumer data rights and, unusually, names specific biometric and precise-geolocation data as sensitive categories requiring opt-in consent before processing.", "source_url": "https://olis.oregonlegislature.gov/liz/2023R1/Measures/Overview/SB619", "introduced": "2023-01-09", "last_action": "2024-07-01", "effective": "2024-07-01", "tags": ["sensitive-data", "opt-in"]}, {"id": "fl-sb-262-2023", "state": "FL", "title": "Florida Digital Bill of Rights", "bill_number": "SB 262", "categories": ["comprehensive", "childrens", "geolocation"], "stage": "effective", "summary": "Applies broad consumer-privacy duties to very large technology firms and restricts collection of precise geolocation and children's data, with the state attorney general as sole enforcer.", "source_url": "https://www.flsenate.gov/Session/Bill/2023/262", "introduced": "2023-02-27", "last_action": "2024-07-01", "effective": "2024-07-01", "tags": ["big-tech", "ag-enforcement"]}, {"id": "co-sb-190-2024", "state": "CO", "title": "Colorado Privacy Act \u2014 Biometric Amendment", "bill_number": "HB 24-1130", "categories": ["biometric"], "stage": "enacted", "summary": "Amends the Colorado Privacy Act to add explicit protections for biometric identifiers, requiring a written policy, consent before collection, and retention limits tied to the purpose of collection.", "source_url": "https://leg.colorado.gov/bills/hb24-1130", "introduced": "2024-02-12", "last_action": "2024-05-31", "effective": "2025-07-01", "tags": ["retention-limits", "consent"]}, {"id": "ky-hb-15-2024", "state": "KY", "title": "Kentucky Consumer Data Protection Act", "bill_number": "HB 15", "categories": ["comprehensive"], "stage": "enacted", "summary": "Closely tracks the Virginia model \u2014 access, correction, deletion, and opt-out rights with opt-in consent for sensitive data \u2014 and takes effect at the start of 2026.", "source_url": "https://apps.legislature.ky.gov/record/24rs/hb15.html", "introduced": "2024-01-09", "last_action": "2024-04-04", "effective": "2026-01-01", "tags": ["virginia-model", "delayed-effective"]}, {"id": "wa-hb-1155-2023", "state": "WA", "title": "My Health My Data Act", "bill_number": "HB 1155", "categories": ["health-data", "geolocation"], "stage": "effective", "summary": "Protects consumer health data \u2014 including location data that could reveal a visit to a health facility \u2014 with consent requirements, a geofencing ban around health-care sites, and a private right of action.", "source_url": "https://app.leg.wa.gov/billsummary?BillNumber=1155&Year=2023", "introduced": "2023-01-18", "last_action": "2024-03-31", "effective": "2024-03-31", "tags": ["geofencing", "reproductive-health", "private-right-of-action"]}, {"id": "or-hb-2052-2023", "state": "OR", "title": "Oregon Data Broker Registration Act", "bill_number": "HB 2052", "categories": ["data-broker"], "stage": "effective", "summary": "Requires data brokers that collect and sell Oregonians' personal data to register with the Department of Consumer and Business Services before doing business in the state.", "source_url": "https://olis.oregonlegislature.gov/liz/2023R1/Measures/Overview/HB2052", "introduced": "2023-01-09", "last_action": "2024-01-01", "effective": "2024-01-01", "tags": ["registration", "broker-registry"]}, {"id": "ut-sb-227-2022", "state": "UT", "title": "Utah Consumer Privacy Act", "bill_number": "SB 227", "categories": ["comprehensive"], "stage": "effective", "summary": "A deliberately business-friendly comprehensive law: consumers may access, delete, and opt out of sales and targeted advertising, but it omits rights to correct data and gives no universal opt-out mandate.", "source_url": "https://le.utah.gov/~2022/bills/static/SB0227.html", "introduced": "2022-02-17", "last_action": "2023-12-31", "effective": "2023-12-31", "tags": ["business-friendly", "opt-out"]}, {"id": "ca-sb-362-2023", "state": "CA", "title": "Delete Act", "bill_number": "SB 362", "categories": ["data-broker"], "stage": "enacted", "summary": "Directs the California Privacy Protection Agency to build a single deletion mechanism that lets residents delete their data from every registered data broker with one request, and tightens broker-registration requirements.", "source_url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240SB362", "introduced": "2023-02-08", "last_action": "2023-10-10", "effective": "2026-01-01", "tags": ["deletion", "broker-registry"]}, {"id": "ct-sb-3-2023", "state": "CT", "title": "Act Concerning Online Privacy, Data and Safety Protections", "bill_number": "SB 3", "categories": ["childrens", "health-data"], "stage": "effective", "summary": "Extends Connecticut's privacy law with heightened duties for minors' data and new protections for consumer health and reproductive-health information.", "source_url": "https://www.cga.ct.gov/asp/cgabillstatus/cgabillstatus.asp?selBillType=Bill&bill_num=SB00003", "introduced": "2023-01-25", "last_action": "2023-10-01", "effective": "2023-10-01", "tags": ["minors", "reproductive-health"]}, {"id": "ct-sb-6-2022", "state": "CT", "title": "Connecticut Data Privacy Act", "bill_number": "SB 6", "categories": ["comprehensive"], "stage": "effective", "summary": "Grants standard consumer data rights with opt-in consent for sensitive data and, like Colorado, mandates recognition of a universal opt-out signal; among the stronger of the \"Virginia-model\" laws.", "source_url": "https://www.cga.ct.gov/asp/cgabillstatus/cgabillstatus.asp?selBillType=Bill&which_year=2022&bill_num=6", "introduced": "2022-02-24", "last_action": "2023-07-01", "effective": "2023-07-01", "tags": ["universal-opt-out", "opt-in"]}, {"id": "co-sb-190-2021", "state": "CO", "title": "Colorado Privacy Act", "bill_number": "SB 21-190", "categories": ["comprehensive"], "stage": "effective", "summary": "Establishes access, correction, deletion, and opt-out rights and, notably, requires businesses to honor a universal opt-out browser signal for the sale of data and targeted advertising.", "source_url": "https://leg.colorado.gov/bills/sb21-190", "introduced": "2021-03-19", "last_action": "2023-07-01", "effective": "2023-07-01", "tags": ["universal-opt-out", "targeted-advertising"]}, {"id": "in-sb-5-2023", "state": "IN", "title": "Indiana Consumer Data Protection Act", "bill_number": "SB 5", "categories": ["comprehensive"], "stage": "enacted", "summary": "A Virginia-model comprehensive law granting access, correction, deletion, and opt-out rights; enacted in 2023 with an unusually long runway before it takes effect at the start of 2026.", "source_url": "https://iga.in.gov/legislative/2023/bills/senate/5", "introduced": "2023-01-09", "last_action": "2023-05-01", "effective": "2026-01-01", "tags": ["virginia-model", "delayed-effective"]}, {"id": "va-sb-1392-2021", "state": "VA", "title": "Virginia Consumer Data Protection Act", "bill_number": "SB 1392", "categories": ["comprehensive"], "stage": "effective", "summary": "The second US comprehensive privacy law, and the template many later states copied: consumer rights to access, correct, delete, and opt out, plus opt-in consent for sensitive data, enforced solely by the attorney general.", "source_url": "https://lis.virginia.gov/cgi-bin/legp604.exe?211+sum+SB1392", "introduced": "2021-01-13", "last_action": "2023-01-01", "effective": "2023-01-01", "tags": ["opt-in", "sensitive-data", "ag-enforcement"]}, {"id": "ca-ccpa-1798-2018", "state": "CA", "title": "California Consumer Privacy Act (as amended by the CPRA)", "bill_number": "AB 375 / Prop 24", "categories": ["comprehensive"], "stage": "effective", "summary": "The first comprehensive US consumer-privacy law: grants rights to know, delete, correct, and opt out of the sale or sharing of personal information, and \u2014 via the 2020 CPRA amendment \u2014 adds a dedicated enforcement agency and a sensitive-personal-information category.", "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?division=3.&part=4.&lawCode=CIV&title=1.81.5", "introduced": "2018-01-03", "last_action": "2023-01-01", "effective": "2023-01-01", "tags": ["opt-out", "sensitive-data", "cppa"]}, {"id": "wa-hb-1493-2017", "state": "WA", "title": "Washington Biometric Privacy Act", "bill_number": "HB 1493", "categories": ["biometric"], "stage": "effective", "summary": "Prohibits enrolling a biometric identifier in a database for a commercial purpose without notice and consent, and restricts selling or leasing that data; enforced by the attorney general.", "source_url": "https://app.leg.wa.gov/billsummary?BillNumber=1493&Year=2017", "introduced": "2017-01-24", "last_action": "2017-07-23", "effective": "2017-07-23", "tags": ["consent", "ag-enforcement"]}, {"id": "tx-cubi-503-2009", "state": "TX", "title": "Capture or Use of Biometric Identifier Act", "bill_number": "Bus. & Com. Code 503.001", "categories": ["biometric"], "stage": "effective", "summary": "Bars capturing a person's biometric identifier for commercial use without consent and requires reasonable retention limits; unlike Illinois it is enforced only by the attorney general, with no private right of action.", "source_url": "https://statutes.capitol.texas.gov/Docs/BC/htm/BC.503.htm", "introduced": "2009-03-13", "last_action": "2009-09-01", "effective": "2009-09-01", "tags": ["consent", "ag-enforcement"]}, {"id": "il-bipa-740-14", "state": "IL", "title": "Biometric Information Privacy Act", "bill_number": "740 ILCS 14", "categories": ["biometric"], "stage": "effective", "summary": "Requires private entities to obtain written consent before collecting fingerprints, faceprints, or other biometric identifiers, and creates a private right of action for violations \u2014 the strictest biometric regime in the country.", "source_url": "https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=3004", "introduced": "2008-02-14", "last_action": "2008-10-03", "effective": "2008-10-03", "tags": ["private-right-of-action", "consent"]}]};
+    window.__CATEGORY_LABELS__ = {"geolocation": "Geolocation", "biometric": "Biometric", "data-broker": "Data broker", "comprehensive": "Comprehensive", "health-data": "Health data", "childrens": "Children's data"};
+    window.__STAGE_LABELS__ = {"introduced": "Introduced", "passed": "Passed", "enacted": "Enacted", "effective": "In effect"};
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>
