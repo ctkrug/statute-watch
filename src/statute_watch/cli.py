@@ -19,7 +19,14 @@ from . import __version__
 from .build import DEFAULT_OUTPUT_DIR, build_site
 from .catalog import load_catalog
 from .models import ValidationError
-from .pipeline import PipelineError, diff, fetch, load_staging, staging_path
+from .pipeline import (
+    PipelineError,
+    apply_merge,
+    diff,
+    fetch,
+    load_staging,
+    staging_path,
+)
 from .sources import check_provenance, load_sources
 from .summarize import stage_label, status_line
 
@@ -80,6 +87,43 @@ def _cmd_diff(args: argparse.Namespace) -> int:
         f"{len(report.unchanged)} unchanged."
     )
     return 0
+
+
+def _cmd_merge(args: argparse.Namespace) -> int:
+    import yaml
+
+    catalog = load_catalog(args.data)
+    if not args.staging and not args.source:
+        raise PipelineError("merge needs a source id or an explicit --staging path")
+    path = args.staging or staging_path(args.source, args.staging_dir)
+    staged = load_staging(path)
+    report = diff(catalog, staged)
+
+    if not report.has_changes():
+        print("Nothing to merge — no new or advanced records.")
+        return 0
+
+    print(f"Would apply {len(report.new)} new and {len(report.advanced)} advanced record(s):")
+    for entry in report.new + report.advanced:
+        print(f"  {entry.kind:<13} {entry.id}  ({entry.detail})")
+
+    if not args.write:
+        print("\nPreview only. Re-run with --write to update the dataset.")
+        return 0
+
+    merged = apply_merge(catalog, staged)
+    target = args.out or args.data or _default_data_path()
+    target.write_text(yaml.safe_dump(merged, sort_keys=False, allow_unicode=True), encoding="utf-8")
+    # Re-validate the written dataset so a merge can never ship a broken file.
+    reloaded = load_catalog(target)
+    print(f"\nWrote {len(reloaded)} statutes -> {target} (revalidated OK).")
+    return 0
+
+
+def _default_data_path() -> Path:
+    from .catalog import DEFAULT_DATA_PATH
+
+    return DEFAULT_DATA_PATH
 
 
 def _cmd_build(args: argparse.Namespace) -> int:
@@ -160,6 +204,16 @@ def build_parser() -> argparse.ArgumentParser:
     p_diff.add_argument("--staging", type=Path, help="explicit staging file path")
     p_diff.add_argument("--staging-dir", type=Path, help="staging directory override")
     p_diff.set_defaults(func=_cmd_diff)
+
+    p_merge = sub.add_parser(
+        "merge", help="fold staged new/advanced records into the dataset (preview by default)"
+    )
+    p_merge.add_argument("source", nargs="?", help="source id whose staged file to merge")
+    p_merge.add_argument("--staging", type=Path, help="explicit staging file path")
+    p_merge.add_argument("--staging-dir", type=Path, help="staging directory override")
+    p_merge.add_argument("--write", action="store_true", help="apply the merge (default: preview)")
+    p_merge.add_argument("--out", type=Path, help="write merged dataset here instead of in place")
+    p_merge.set_defaults(func=_cmd_merge)
 
     return parser
 
