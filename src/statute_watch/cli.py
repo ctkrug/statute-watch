@@ -16,16 +16,29 @@ from . import __version__
 from .build import DEFAULT_OUTPUT_DIR, build_site
 from .catalog import load_catalog
 from .models import ValidationError
+from .sources import check_provenance, load_sources
 from .summarize import stage_label, status_line
 
 
 def _cmd_validate(args: argparse.Namespace) -> int:
     catalog = load_catalog(args.data)
+    registry = load_sources(args.sources)
+    check_provenance(catalog, registry)
     counts = catalog.category_counts()
     print(f"OK — {len(catalog)} statutes across {len(catalog.states())} states.")
     for category, count in counts.items():
         if count:
             print(f"  {category:<14} {count}")
+    print(f"  provenance     {len(registry.official())} official sources")
+    return 0
+
+
+def _cmd_sources(args: argparse.Namespace) -> int:
+    registry = load_sources(args.sources)
+    for source in registry:
+        tag = source.state or source.jurisdiction
+        print(f"{source.kind:<9} {tag:<16} {source.name}")
+        print(f"          {source.url}")
     return 0
 
 
@@ -64,10 +77,19 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
         help="path to a statutes YAML dataset (defaults to the bundled dataset)",
     )
+    parser.add_argument(
+        "--sources",
+        type=Path,
+        default=None,
+        help="path to a sources YAML registry (defaults to the bundled registry)",
+    )
     sub = parser.add_subparsers(dest="command", required=True)
 
-    p_validate = sub.add_parser("validate", help="validate the dataset")
+    p_validate = sub.add_parser("validate", help="validate the dataset and its provenance")
     p_validate.set_defaults(func=_cmd_validate)
+
+    p_sources = sub.add_parser("sources", help="list the registered legislative sources")
+    p_sources.set_defaults(func=_cmd_sources)
 
     p_build = sub.add_parser("build", help="render the static site")
     p_build.add_argument(
