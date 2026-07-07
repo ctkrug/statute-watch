@@ -27,3 +27,28 @@ def test_validate_bad_dataset_exits_nonzero(tmp_path, capsys):
     bad.write_text("- id: x\n  state: ZZ\n  categories: [biometric]\n", encoding="utf-8")
     assert main(["--data", str(bad), "validate"]) == 1
     assert "error:" in capsys.readouterr().err
+
+
+def test_validate_reports_provenance(capsys):
+    assert main(["validate"]) == 0
+    assert "official sources" in capsys.readouterr().out
+
+
+def test_validate_fails_without_official_source(tmp_path, capsys):
+    # A state absent from the source registry must fail the provenance gate.
+    data = tmp_path / "d.yaml"
+    data.write_text(
+        "- id: ak-1\n  state: AK\n  title: T\n  bill_number: HB 1\n"
+        "  categories: [comprehensive]\n  stage: introduced\n  summary: S.\n"
+        "  source_url: https://akleg.gov/hb1\n",
+        encoding="utf-8",
+    )
+    assert main(["--data", str(data), "validate"]) == 1
+    assert "AK" in capsys.readouterr().err
+
+
+def test_sources_lists_registry(capsys):
+    assert main(["sources"]) == 0
+    out = capsys.readouterr().out
+    assert "official" in out
+    assert "California Legislative Information" in out

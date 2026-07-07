@@ -14,6 +14,20 @@ def test_bundled_dataset_loads(catalog):
     assert all(len(s.state) == 2 and s.state.isupper() for s in catalog)
 
 
+def test_v1_coverage_target_holds(catalog):
+    # Backlog 2.1: >= 20 statutes across >= 15 states, with at least three each
+    # in the four core categories, and every lifecycle stage represented.
+    assert len(catalog) >= 20
+    assert len(catalog.states()) >= 15
+
+    counts = catalog.category_counts()
+    for core in ("biometric", "geolocation", "data-broker", "comprehensive"):
+        assert counts[core] >= 3, f"{core} has only {counts[core]}"
+
+    stages = {s.stage for s in catalog}
+    assert stages == {"introduced", "passed", "enacted", "effective"}
+
+
 def test_sorted_newest_activity_first(catalog):
     def key(s):
         return s.last_action or s.introduced
