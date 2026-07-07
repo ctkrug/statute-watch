@@ -31,11 +31,23 @@
     ).sort();
   }
 
+  // Order values present in the data by a canonical label order (e.g. the
+  // lifecycle order of stages), falling back to alphabetical for anything the
+  // label map does not know about. States have no canonical order -> alphabetical.
+  function orderedBy(values, labels) {
+    var present = {};
+    values.forEach(function (v) { present[v] = true; });
+    var known = Object.keys(labels).filter(function (v) { return present[v]; });
+    var extra = distinct(values).filter(function (v) { return !(v in labels); });
+    return known.concat(extra);
+  }
+
   var states = distinct(data.map(function (s) { return s.state; }));
-  var categories = distinct(
-    data.reduce(function (acc, s) { return acc.concat(s.categories || []); }, [])
+  var categories = orderedBy(
+    data.reduce(function (acc, s) { return acc.concat(s.categories || []); }, []),
+    CATEGORY_LABELS
   );
-  var stages = distinct(data.map(function (s) { return s.stage; }));
+  var stages = orderedBy(data.map(function (s) { return s.stage; }), STAGE_LABELS);
 
   function addOptions(select, values, labels) {
     values.forEach(function (v) {
