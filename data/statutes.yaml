@@ -202,3 +202,102 @@
   introduced: 2025-01-17
   last_action: 2025-01-17
   tags: [sale-ban, warrant]
+
+# --- Comprehensive consumer-privacy laws (the "second wave" after CA) ---------
+
+- id: ca-ccpa-1798-2018
+  state: CA
+  title: California Consumer Privacy Act (as amended by the CPRA)
+  bill_number: AB 375 / Prop 24
+  categories: [comprehensive]
+  stage: effective
+  summary: >-
+    The first comprehensive US consumer-privacy law: grants rights to know,
+    delete, correct, and opt out of the sale or sharing of personal information,
+    and — via the 2020 CPRA amendment — adds a dedicated enforcement agency and
+    a sensitive-personal-information category.
+  source_url: https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?division=3.&part=4.&lawCode=CIV&title=1.81.5
+  introduced: 2018-01-03
+  last_action: 2023-01-01
+  effective: 2023-01-01
+  tags: [opt-out, sensitive-data, cppa]
+
+- id: va-sb-1392-2021
+  state: VA
+  title: Virginia Consumer Data Protection Act
+  bill_number: SB 1392
+  categories: [comprehensive]
+  stage: effective
+  summary: >-
+    The second US comprehensive privacy law, and the template many later states
+    copied: consumer rights to access, correct, delete, and opt out, plus opt-in
+    consent for sensitive data, enforced solely by the attorney general.
+  source_url: https://lis.virginia.gov/cgi-bin/legp604.exe?211+sum+SB1392
+  introduced: 2021-01-13
+  last_action: 2023-01-01
+  effective: 2023-01-01
+  tags: [opt-in, sensitive-data, ag-enforcement]
+
+- id: co-sb-190-2021
+  state: CO
+  title: Colorado Privacy Act
+  bill_number: SB 21-190
+  categories: [comprehensive]
+  stage: effective
+  summary: >-
+    Establishes access, correction, deletion, and opt-out rights and, notably,
+    requires businesses to honor a universal opt-out browser signal for the sale
+    of data and targeted advertising.
+  source_url: https://leg.colorado.gov/bills/sb21-190
+  introduced: 2021-03-19
+  last_action: 2023-07-01
+  effective: 2023-07-01
+  tags: [universal-opt-out, targeted-advertising]
+
+- id: ct-sb-6-2022
+  state: CT
+  title: Connecticut Data Privacy Act
+  bill_number: SB 6
+  categories: [comprehensive]
+  stage: effective
+  summary: >-
+    Grants standard consumer data rights with opt-in consent for sensitive data
+    and, like Colorado, mandates recognition of a universal opt-out signal;
+    among the stronger of the "Virginia-model" laws.
+  source_url: https://www.cga.ct.gov/asp/cgabillstatus/cgabillstatus.asp?selBillType=Bill&which_year=2022&bill_num=6
+  introduced: 2022-02-24
+  last_action: 2023-07-01
+  effective: 2023-07-01
+  tags: [universal-opt-out, opt-in]
+
+- id: ut-sb-227-2022
+  state: UT
+  title: Utah Consumer Privacy Act
+  bill_number: SB 227
+  categories: [comprehensive]
+  stage: effective
+  summary: >-
+    A deliberately business-friendly comprehensive law: consumers may access,
+    delete, and opt out of sales and targeted advertising, but it omits rights
+    to correct data and gives no universal opt-out mandate.
+  source_url: https://le.utah.gov/~2022/bills/static/SB0227.html
+  introduced: 2022-02-17
+  last_action: 2023-12-31
+  effective: 2023-12-31
+  tags: [business-friendly, opt-out]
+
+- id: tn-hb-1181-2023
+  state: TN
+  title: Tennessee Information Protection Act
+  bill_number: HB 1181
+  categories: [comprehensive]
+  stage: effective
+  summary: >-
+    Grants standard consumer data rights and is unique in offering businesses an
+    affirmative defense if they maintain a written privacy program conforming to
+    the NIST privacy framework.
+  source_url: https://wapp.capitol.tn.gov/apps/BillInfo/Default.aspx?BillNumber=HB1181&GA=113
+  introduced: 2023-01-31
+  last_action: 2025-07-01
+  effective: 2025-07-01
+  tags: [nist-framework, affirmative-defense]
