@@ -1,0 +1,45 @@
+"""Tests for the static-site builder."""
+
+import json
+
+from statute_watch.build import build_site
+
+
+def test_build_emits_self_contained_site(tmp_path, catalog):
+    out = build_site(tmp_path / "site", catalog=catalog)
+    index = out / "index.html"
+    assert index.exists()
+    assert (out / "styles.css").exists()
+    assert (out / "app.js").exists()
+    assert (out / "data.json").exists()
+
+    html = index.read_text(encoding="utf-8")
+    # Every statute is server-rendered (progressive enhancement).
+    assert html.count('class="card"') == len(catalog)
+    # No template placeholders survive the render.
+    assert "{{" not in html
+
+
+def test_build_uses_relative_asset_paths(tmp_path, catalog):
+    out = build_site(tmp_path / "site", catalog=catalog)
+    html = (out / "index.html").read_text(encoding="utf-8")
+    assert 'href="styles.css"' in html
+    assert 'src="app.js"' in html
+    # No absolute-root asset references that would break under a base path.
+    assert 'href="/' not in html
+    assert 'src="/' not in html
+
+
+def test_data_json_matches_catalog(tmp_path, catalog):
+    out = build_site(tmp_path / "site", catalog=catalog)
+    data = json.loads((out / "data.json").read_text(encoding="utf-8"))
+    assert len(data["statutes"]) == len(catalog)
+    ids = {s["id"] for s in data["statutes"]}
+    assert ids == {s.id for s in catalog}
+
+
+def test_summary_text_is_escaped_and_present(tmp_path, catalog):
+    out = build_site(tmp_path / "site", catalog=catalog)
+    html = (out / "index.html").read_text(encoding="utf-8")
+    # A known statute's title should appear in the rendered cards.
+    assert "Biometric Information Privacy Act" in html
