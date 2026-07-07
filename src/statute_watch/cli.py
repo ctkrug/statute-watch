@@ -17,8 +17,8 @@ from pathlib import Path
 
 from . import __version__
 from .build import DEFAULT_OUTPUT_DIR, build_site
-from .catalog import load_catalog
-from .models import ValidationError
+from .catalog import Catalog, load_catalog
+from .models import Statute, ValidationError
 from .pipeline import (
     PipelineError,
     apply_merge,
@@ -112,9 +112,15 @@ def _cmd_merge(args: argparse.Namespace) -> int:
         return 0
 
     merged = apply_merge(catalog, staged)
+    # Validate the merged result in full — structure *and* provenance — before
+    # writing, so a merge can never leave a dataset the validate gate rejects
+    # (e.g. a new state with no registered official source).
+    merged_catalog = Catalog(statutes=tuple(Statute.from_dict(r) for r in merged))
+    check_provenance(merged_catalog, load_sources(args.sources))
+
     target = args.out or args.data or _default_data_path()
     target.write_text(yaml.safe_dump(merged, sort_keys=False, allow_unicode=True), encoding="utf-8")
-    # Re-validate the written dataset so a merge can never ship a broken file.
+    # Reload from disk as a final belt-and-braces check on the written file.
     reloaded = load_catalog(target)
     print(f"\nWrote {len(reloaded)} statutes -> {target} (revalidated OK).")
     return 0

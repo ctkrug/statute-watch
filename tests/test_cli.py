@@ -128,6 +128,25 @@ def test_merge_nothing_to_merge(tmp_path, capsys):
     assert "Nothing to merge" in capsys.readouterr().out
 
 
+def test_merge_write_refuses_to_break_provenance(tmp_path, capsys):
+    # A staged bill for a state with no official source must not be merged in:
+    # the written dataset would fail the validate gate, so merge must refuse and
+    # not write the file (a merge can never ship a broken dataset).
+    staging = tmp_path / "src.yaml"
+    staging.write_text(
+        "- id: ak-new-1\n  state: AK\n  title: Alaska Biometric Privacy Act\n"
+        "  bill_number: HB 99\n  categories: [biometric]\n  stage: introduced\n"
+        "  summary: A new Alaska bill with no registered source.\n"
+        "  source_url: https://akleg.gov/hb99\n  fetched_from: congress-ncsl\n",
+        encoding="utf-8",
+    )
+    out_data = tmp_path / "merged.yaml"
+    argv = ["merge", "--staging", str(staging), "--write", "--out", str(out_data)]
+    assert main(argv) == 1
+    assert "AK" in capsys.readouterr().err
+    assert not out_data.exists()
+
+
 def test_merge_write_applies_and_revalidates(tmp_path, capsys):
     main(["fetch", "congress-ncsl", "--feed", FEED, "--staging-dir", str(tmp_path)])
     capsys.readouterr()
