@@ -19,6 +19,9 @@ env/
 # Build output (generated static site)
 dist/
 
+# Staged fetch candidates (transient; reviewed then folded into data/statutes.yaml)
+data/staging/
+
 # Editor / OS
 .DS_Store
 .idea/
