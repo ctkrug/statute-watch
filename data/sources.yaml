@@ -1,0 +1,40 @@
+# Legislative sources the pipeline draws from.
+#
+# For v1 the dataset is hand-curated from these official records; a later epic
+# adds a scraper that ingests and refreshes entries against them. Each source is
+# an authoritative, public legislative site — no scraping of paywalled trackers.
+
+- id: congress-ncsl
+  name: National Conference of State Legislatures — Privacy Legislation Tracker
+  jurisdiction: US (all states)
+  url: https://www.ncsl.org/technology-and-communication/state-consumer-privacy-laws
+  kind: index
+  notes: Curated cross-state index used to discover new bills to track.
+
+- id: iapp-tracker
+  name: IAPP US State Privacy Legislation Tracker
+  jurisdiction: US (all states)
+  url: https://iapp.org/resources/article/us-state-privacy-legislation-tracker/
+  kind: index
+  notes: Reference index for comprehensive consumer-privacy bills.
+
+- id: ca-leginfo
+  name: California Legislative Information
+  jurisdiction: CA
+  url: https://leginfo.legislature.ca.gov/
+  kind: official
+  notes: Bill text and status of record for California.
+
+- id: tx-capitol
+  name: Texas Legislature Online
+  jurisdiction: TX
+  url: https://capitol.texas.gov/
+  kind: official
+  notes: Bill lookup and history for Texas.
+
+- id: wa-leg
+  name: Washington State Legislature
+  jurisdiction: WA
+  url: https://app.leg.wa.gov/
+  kind: official
+  notes: Bill summaries and status for Washington.
