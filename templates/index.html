@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Statute Watch — US state privacy law, tracked</title>
+  <meta name="description" content="A tracker of US state privacy-law changes — geolocation, biometric, and data-broker rules — filterable by state and data type, each with a plain-English summary." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231b2a4a'/%3E%3Cpath d='M16 5l9 4v6c0 5-4 9-9 12-5-3-9-7-9-12V9z' fill='none' stroke='%23e2483d' stroke-width='2.4'/%3E%3Cpath d='M11 16l3.5 3.5L22 12' fill='none' stroke='%23f4f1ea' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap masthead__inner">
+      <a class="wordmark" href="./">
+        <span class="wordmark__glyph" aria-hidden="true">§</span>
+        <span class="wordmark__name">Statute<span class="wordmark__accent">Watch</span></span>
+      </a>
+      <p class="masthead__tag">US state privacy law, tracked &amp; explained</p>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero__inner">
+      <h1 class="hero__headline">Fifty legislatures. One dossier.</h1>
+      <p class="hero__lede">
+        Geolocation, biometric, and data-broker rules as they move through the
+        statehouses — filterable by state and data type, each with a plain-English
+        &ldquo;what changed.&rdquo;
+      </p>
+      <dl class="hero__stats">
+        <div class="stat"><dt>Statutes tracked</dt><dd>{{COUNT}}</dd></div>
+        <div class="stat"><dt>States covered</dt><dd>{{STATE_COUNT}}</dd></div>
+        <div class="stat"><dt>Data types</dt><dd>6</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <main class="wrap main">
+    <form class="filters" aria-label="Filter statutes">
+      <div class="filters__group">
+        <label for="f-state">State</label>
+        <select id="f-state" name="state"><option value="">All states</option></select>
+      </div>
+      <div class="filters__group">
+        <label for="f-category">Data type</label>
+        <select id="f-category" name="category"><option value="">All data types</option></select>
+      </div>
+      <div class="filters__group">
+        <label for="f-stage">Stage</label>
+        <select id="f-stage" name="stage"><option value="">Any stage</option></select>
+      </div>
+      <button type="reset" class="filters__reset">Clear</button>
+    </form>
+
+    <p class="resultbar" role="status" aria-live="polite">
+      <span id="result-count">{{COUNT}}</span> statutes
+    </p>
+
+    <section class="grid" id="grid">
+      {{CARDS}}
+    </section>
+
+    <p class="empty" id="empty" hidden>No statutes match those filters yet.</p>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p>Statute Watch &middot; MIT licensed &middot; data curated from official legislative records.</p>
+      <p class="foot__note">Informational only — not legal advice.</p>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATUTE_DATA__ = {{DATASET_JSON}};
+    window.__CATEGORY_LABELS__ = {{CATEGORY_LABELS}};
+    window.__STAGE_LABELS__ = {{STAGE_LABELS}};
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>
