@@ -21,17 +21,25 @@
 
   <section class="hero">
     <div class="wrap hero__inner">
-      <h1 class="hero__headline">Fifty legislatures. One dossier.</h1>
-      <p class="hero__lede">
-        Geolocation, biometric, and data-broker rules as they move through the
-        statehouses — filterable by state and data type, each with a plain-English
-        &ldquo;what changed.&rdquo;
-      </p>
-      <dl class="hero__stats">
-        <div class="stat"><dt>Statutes tracked</dt><dd>{{COUNT}}</dd></div>
-        <div class="stat"><dt>States covered</dt><dd>{{STATE_COUNT}}</dd></div>
-        <div class="stat"><dt>Data types</dt><dd>6</dd></div>
-      </dl>
+      <div class="hero__thesis">
+        <h1 class="hero__headline">Fifty legislatures. One dossier.</h1>
+        <p class="hero__lede">
+          Geolocation, biometric, and data-broker rules as they move through the
+          statehouses — filterable by state and data type, each with a plain-English
+          &ldquo;what changed.&rdquo;
+        </p>
+        <dl class="hero__stats">
+          <div class="stat"><dt>Statutes tracked</dt><dd>{{COUNT}}</dd></div>
+          <div class="stat"><dt>States covered</dt><dd>{{STATE_COUNT}}</dd></div>
+          <div class="stat"><dt>Data types</dt><dd>6</dd></div>
+        </dl>
+      </div>
+      <aside class="coverage" aria-label="Statutes tracked per state">
+        <h2 class="coverage__title">Coverage by state</h2>
+        <ol class="coverage__list">
+{{COVERAGE}}
+        </ol>
+      </aside>
     </div>
   </section>
 
