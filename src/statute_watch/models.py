@@ -45,6 +45,18 @@ class ValidationError(ValueError):
     """Raised when a statute record fails validation."""
 
 
+def _as_list(value: object, field_name: str) -> tuple:
+    """Coerce a YAML sequence to a tuple, rejecting scalars cleanly.
+
+    A bare string or a number would otherwise either raise an uncaught
+    ``TypeError`` (non-iterable) or be silently char-split into single-element
+    entries. Both are dataset defects, so surface a :class:`ValidationError`.
+    """
+    if isinstance(value, (list, tuple)):
+        return tuple(value)
+    raise ValidationError(f"{field_name} must be a list, got {type(value).__name__}")
+
+
 def _parse_date(value: object, field_name: str) -> _dt.date | None:
     """Coerce ``value`` to a :class:`datetime.date`, or ``None`` if empty."""
     if value in (None, ""):
@@ -115,10 +127,9 @@ class Statute:
         """Build a :class:`Statute` from a plain dict (e.g. one YAML record)."""
         if not isinstance(raw, dict):
             raise ValidationError(f"expected a mapping, got {type(raw).__name__}")
-        try:
-            categories = tuple(raw["categories"])
-        except KeyError as exc:
-            raise ValidationError("record is missing 'categories'") from exc
+        if "categories" not in raw:
+            raise ValidationError("record is missing 'categories'")
+        categories = _as_list(raw["categories"], "categories")
         return cls(
             id=str(raw.get("id", "")).strip(),
             state=str(raw.get("state", "")).strip().upper(),
@@ -131,7 +142,7 @@ class Statute:
             introduced=_parse_date(raw.get("introduced"), "introduced"),
             last_action=_parse_date(raw.get("last_action"), "last_action"),
             effective=_parse_date(raw.get("effective"), "effective"),
-            tags=tuple(raw.get("tags", ()) or ()),
+            tags=_as_list(raw.get("tags") or (), "tags"),
         )
 
     def to_dict(self) -> dict:

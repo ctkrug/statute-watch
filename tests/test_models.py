@@ -60,6 +60,28 @@ def test_bad_date_rejected():
         Statute.from_dict(_record(effective="July 2024"))
 
 
+@pytest.mark.parametrize("bad", [None, 5, True, {"a": 1}])
+def test_non_list_categories_rejected_cleanly(bad):
+    # A malformed 'categories' (null, a number, a bool, a mapping) must fail as a
+    # ValidationError the CLI can report — never an uncaught TypeError traceback.
+    with pytest.raises(ValidationError, match="categories must be a list"):
+        Statute.from_dict(_record(categories=bad))
+
+
+def test_scalar_string_categories_rejected():
+    # A bare string must not be silently char-split into single-letter categories.
+    with pytest.raises(ValidationError, match="categories must be a list"):
+        Statute.from_dict(_record(categories="biometric"))
+
+
+@pytest.mark.parametrize("bad", [5, True, "foo"])
+def test_non_list_tags_rejected_cleanly(bad):
+    # 'tags' has the same coercion hazard as 'categories': a scalar must be a
+    # clean ValidationError, not a TypeError or a char-split list.
+    with pytest.raises(ValidationError, match="tags must be a list"):
+        Statute.from_dict(_record(tags=bad))
+
+
 def test_roundtrip_to_dict():
     s = Statute.from_dict(_record())
     d = s.to_dict()
