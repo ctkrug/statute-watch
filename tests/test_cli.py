@@ -92,6 +92,37 @@ def test_merge_preview_does_not_write(tmp_path, capsys):
     assert not out_data.exists()
 
 
+def test_list_filtered_by_category(capsys):
+    assert main(["list", "--category", "biometric"]) == 0
+    out = capsys.readouterr().out
+    assert "Biometric Information Privacy Act" in out
+
+
+def test_list_no_matches_reports_cleanly(capsys):
+    # A filter that matches nothing prints a message and still exits 0.
+    assert main(["list", "--state", "AK"]) == 0
+    assert "No statutes match." in capsys.readouterr().out
+
+
+def test_diff_empty_staging_reports_nothing(tmp_path, capsys):
+    staging = tmp_path / "congress-ncsl.yaml"
+    staging.write_text("[]\n", encoding="utf-8")
+    assert main(["diff", "congress-ncsl", "--staging-dir", str(tmp_path)]) == 0
+    assert "No staged candidates to compare." in capsys.readouterr().out
+
+
+def test_merge_without_target_exits_nonzero(capsys):
+    assert main(["merge"]) == 1
+    assert "source id or an explicit --staging" in capsys.readouterr().err
+
+
+def test_merge_nothing_to_merge(tmp_path, capsys):
+    staging = tmp_path / "congress-ncsl.yaml"
+    staging.write_text("[]\n", encoding="utf-8")
+    assert main(["merge", "congress-ncsl", "--staging-dir", str(tmp_path)]) == 0
+    assert "Nothing to merge" in capsys.readouterr().out
+
+
 def test_merge_write_applies_and_revalidates(tmp_path, capsys):
     main(["fetch", "congress-ncsl", "--feed", FEED, "--staging-dir", str(tmp_path)])
     capsys.readouterr()
