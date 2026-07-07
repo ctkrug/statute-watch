@@ -10,7 +10,8 @@
   --ink:       #16203a;
   --muted:     #5a6478;
   --line:      #d5dae3;
-  --accent:    #e2483d;   /* vermilion — amendments/action */
+  --accent:    #e2483d;   /* vermilion — fills, focus rings, large display */
+  --accent-ink:#c93b31;   /* darker vermilion for small text (AA ≥4.5:1 on paper) */
   --accent-2:  #1b2a4a;   /* deep civic navy */
   --ok:        #2f7d5b;
   --radius:    10px;
@@ -141,7 +142,7 @@ body {
 }
 .card__stage { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; font-weight: 600; color: var(--muted); }
 .card__stage--effective { color: var(--ok); }
-.card__stage--enacted, .card__stage--passed { color: var(--accent); }
+.card__stage--enacted, .card__stage--passed { color: var(--accent-ink); }
 .card__title { font-family: var(--display); font-size: 1.18rem; font-weight: 600; margin: 0; line-height: 1.2; }
 .card__bill { margin: -4px 0 0; font-size: .82rem; color: var(--muted); font-variant-numeric: tabular-nums; }
 .card__summary { margin: 0; font-size: .95rem; color: #2b3450; }
@@ -153,10 +154,10 @@ body {
 }
 .card__status { margin: 0; font-size: .82rem; color: var(--muted); font-weight: 500; }
 .card__link {
-  align-self: flex-start; font-size: .88rem; font-weight: 600; color: var(--accent);
+  align-self: flex-start; font-size: .88rem; font-weight: 600; color: var(--accent-ink);
   text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 140ms ease;
 }
-.card__link:hover { border-bottom-color: var(--accent); }
+.card__link:hover { border-bottom-color: var(--accent-ink); }
 .card__link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 
 .empty { text-align: center; padding: 48px 0; color: var(--muted); font-size: 1.05rem; }

@@ -28,7 +28,8 @@ is not another paper/blueprint or dark theme in the wall.
 | `--ink` | `#16203a` | primary text (ink navy) |
 | `--muted` | `#5a6478` | secondary text |
 | `--line` | `#d5dae3` | hairline borders |
-| `--accent` | `#e2483d` | **vermilion** — action, amendments, links |
+| `--accent` | `#e2483d` | **vermilion** — fills, focus rings, large display type |
+| `--accent-ink` | `#c93b31` | darker vermilion for small text (AA ≥4.5:1 on paper) |
 | `--accent-2` | `#1b2a4a` | deep civic navy — state chips, rules |
 | `--ok` | `#2f7d5b` | "in effect" positive status |
 
